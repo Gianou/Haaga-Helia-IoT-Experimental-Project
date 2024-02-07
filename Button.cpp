@@ -9,7 +9,7 @@ void Button::begin()
 
 void Button::update()
 {
-    digitalRead(pin);
+    value = digitalRead(pin);
 }
 
 int Button::getValue()
