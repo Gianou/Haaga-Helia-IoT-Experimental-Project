@@ -3,6 +3,7 @@
 #include "Screen.h"
 #include "Button.h"
 #include "Joystick.h"
+#include "InputManager.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -22,33 +23,25 @@ Button blueButton = Button(BUTTON_PIN_BLUE);
 
 void setup()
 {
-  // SERIAL MONITOR
   Serial.begin(9600);
+
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
 
-  delay(5000);
+  InputManager &inputManager = InputManager::getInstance();
+  inputManager.init(yellowButton, blueButton, joystick);
+
+  delay(2000);
 }
 
 void loop()
 {
-  // tft.fillScreen(TFT_BLACK); // To delete previous frame
   screen.draw();
-  yellowButton.update();
-  blueButton.update();
-  joystick.update();
 
-  Serial.println("Yellow : " + String(yellowButton.getValue()));
-  Serial.println("Blue : " + String(blueButton.getValue()));
-  Serial.println("X : " + String(joystick.getXValue()));
-  Serial.println("Y : " + String(joystick.getYValue()));
+  // Get reference to the inputManager Singleton and get all inputs
+  InputManager &inputManager = InputManager::getInstance();
+  inputManager.update();
 
-  /*
-    Instantiating the buttons as a class works but now we need the draw method
-    from the screen to draw each element.
-    Interface to define some data for the elements + composition pattern?
-  */
-
-  delay(500);
+  delay(64);
 }

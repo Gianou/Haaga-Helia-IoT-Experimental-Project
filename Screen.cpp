@@ -18,10 +18,31 @@ void Screen::begin()
 
 void Screen::draw()
 {
-    tft.fillScreen(TFT_BLACK); // To delete previous frame
+    tft.fillScreen(TFT_BLACK); // To delete the previous frame
 
-    tft.setCursor(0, 4, 4);
-    // Set the font colour to be white with a black background
+    tft.setCursor(0, 4, 2);
     tft.setTextColor(TFT_WHITE);
-    tft.println("The game is running");
+
+    // Retrieve the InputManager instance
+    InputManager &inputManager = InputManager::getInstance();
+    inputManager.update(); // Make sure to update the inputManager before getting values
+
+    // Get input values
+    int blueButtonValue = inputManager.getBlueButtonValue();
+    int yellowButtonValue = inputManager.getYellowButtonValue();
+    int joystickXValue = inputManager.getJoystickXValue();
+    int joystickYValue = inputManager.getJoystickYValue();
+
+    // Print input values on the screen
+    tft.print("Blue : ");
+    tft.println(blueButtonValue);
+
+    tft.print("Yellow : ");
+    tft.println(yellowButtonValue);
+
+    tft.print("X: ");
+    tft.println(joystickXValue);
+
+    tft.print("Y: ");
+    tft.println(joystickYValue);
 }

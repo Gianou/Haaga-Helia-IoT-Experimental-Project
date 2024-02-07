@@ -2,6 +2,7 @@
 #define Screen_H
 
 #include <TFT_eSPI.h>
+#include "InputManager.h"
 
 class Screen
 {
