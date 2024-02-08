@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "Joystick.h"
 #include "InputManager.h"
+#include "Player.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -20,6 +21,7 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
+Player player = Player(50, 50, 20, 20);
 
 void setup()
 {
@@ -42,6 +44,9 @@ void loop()
   // Get reference to the inputManager Singleton and get all inputs
   InputManager &inputManager = InputManager::getInstance();
   inputManager.update();
+
+  player.update();
+  player.draw(screen.getTFT());
 
   delay(64);
 }

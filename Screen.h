@@ -10,6 +10,7 @@ public:
     Screen();
     void begin();
     void draw();
+    TFT_eSPI &getTFT();
 
 private:
     TFT_eSPI tft;

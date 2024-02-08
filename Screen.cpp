@@ -46,3 +46,8 @@ void Screen::draw()
     tft.print("Y: ");
     tft.println(joystickYValue);
 }
+
+TFT_eSPI &Screen::getTFT()
+{
+    return tft;
+}
