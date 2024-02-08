@@ -1,27 +1,30 @@
 #include <SPI.h>
-#include <TFT_eSPI.h> // Hardware-specific library
+#include <TFT_eSPI.h>
 #include "Screen.h"
 #include "Button.h"
 #include "Joystick.h"
 #include "InputManager.h"
 #include "Player.h"
+#include "RenderEngine.h"
+#include "Debugger.h"
 
 // SCREEN
 Screen screen = Screen();
 
 // JOYSTICKS
-#define VRX_PIN 34 // ESP32 pin GPIO36 (ADC0) connected to VRX pin
-#define VRY_PIN 35 // ESP32 pin GPIO39 (ADC0) connected to VRY pin
+#define VRX_PIN 34
+#define VRY_PIN 35
 Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 
 // BUTTONS
-
 #define BUTTON_PIN_YELLOW 19 // Yellow button
 #define BUTTON_PIN_BLUE 21   // Blue button
 
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
+Debugger debugger = Debugger(4, 4);
+RenderEngine renderEngine = RenderEngine();
 
 void setup()
 {
@@ -34,19 +37,20 @@ void setup()
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
 
+  renderEngine.addRenderable(&screen);
+  renderEngine.addRenderable(&debugger);
+  renderEngine.addRenderable(&player);
+
   delay(2000);
 }
 
 void loop()
 {
-  screen.draw();
-
   // Get reference to the inputManager Singleton and get all inputs
   InputManager &inputManager = InputManager::getInstance();
   inputManager.update();
+  renderEngine.draw(screen.getTFT());
 
   player.update();
-  player.draw(screen.getTFT());
-
   delay(64);
 }

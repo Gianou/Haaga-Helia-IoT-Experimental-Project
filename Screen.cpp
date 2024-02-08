@@ -16,35 +16,9 @@ void Screen::begin()
     tft.println("Hello World!");
 }
 
-void Screen::draw()
+void Screen::draw(TFT_eSPI &wedontneedthereferencehere)
 {
     tft.fillScreen(TFT_BLACK); // To delete the previous frame
-
-    tft.setCursor(0, 4, 2);
-    tft.setTextColor(TFT_WHITE);
-
-    // Retrieve the InputManager instance
-    InputManager &inputManager = InputManager::getInstance();
-    inputManager.update(); // Make sure to update the inputManager before getting values
-
-    // Get input values
-    int blueButtonValue = inputManager.getBlueButtonValue();
-    int yellowButtonValue = inputManager.getYellowButtonValue();
-    int joystickXValue = inputManager.getJoystickXValue();
-    int joystickYValue = inputManager.getJoystickYValue();
-
-    // Print input values on the screen
-    tft.print("Blue : ");
-    tft.println(blueButtonValue);
-
-    tft.print("Yellow : ");
-    tft.println(yellowButtonValue);
-
-    tft.print("X: ");
-    tft.println(joystickXValue);
-
-    tft.print("Y: ");
-    tft.println(joystickYValue);
 }
 
 TFT_eSPI &Screen::getTFT()

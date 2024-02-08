@@ -2,14 +2,15 @@
 #define Screen_H
 
 #include <TFT_eSPI.h>
+#include "Renderable.h"
 #include "InputManager.h"
 
-class Screen
+class Screen : public Renderable
 {
 public:
     Screen();
     void begin();
-    void draw();
+    void draw(TFT_eSPI &tft) override;
     TFT_eSPI &getTFT();
 
 private:
