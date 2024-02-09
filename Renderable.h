@@ -6,7 +6,7 @@
 class Renderable
 {
 public:
-    virtual void draw(TFT_eSPI &tft) = 0;
+    virtual void draw(TFT_eSprite &sprite) = 0;
     virtual ~Renderable() {} // Virtual destructor for proper polymorphic behavior
 };
 

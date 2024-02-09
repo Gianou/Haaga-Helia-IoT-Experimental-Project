@@ -37,9 +37,9 @@ void setup()
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
 
-  renderEngine.addRenderable(&screen);
   renderEngine.addRenderable(&debugger);
   renderEngine.addRenderable(&player);
+  renderEngine.addRenderable(&screen);
 
   delay(2000);
 }
@@ -49,8 +49,8 @@ void loop()
   // Get reference to the inputManager Singleton and get all inputs
   InputManager &inputManager = InputManager::getInstance();
   inputManager.update();
-  renderEngine.draw(screen.getTFT());
+  renderEngine.draw(screen.getSprite());
 
   player.update();
-  delay(64);
+  delay(33);
 }

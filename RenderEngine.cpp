@@ -4,11 +4,12 @@ RenderEngine::RenderEngine()
 {
 }
 
-void RenderEngine::draw(TFT_eSPI &tft)
+void RenderEngine::draw(TFT_eSprite &sprite)
 {
+    sprite.fillRect(0, 0, 158, 128, TFT_BLACK);
     for (Renderable *renderable : renderables)
     {
-        renderable->draw(tft);
+        renderable->draw(sprite);
     }
 }
 

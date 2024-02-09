@@ -3,7 +3,6 @@
 Player::Player(int initialX, int initialY, int playerWidth, int playerHeight)
     : x(initialX), y(initialY), width(playerWidth), height(playerHeight), speed(1), inputManager(InputManager::getInstance())
 {
-    // Constructor code if needed
 }
 
 void Player::update()
@@ -39,10 +38,7 @@ void Player::update()
     }
 }
 
-void Player::draw(TFT_eSPI &tft)
+void Player::draw(TFT_eSprite &sprite)
 {
-    // Draw the player as a rectangle
-    tft.fillRect(x, y, width, height, TFT_RED); // Adjust color as needed
-
-    // Add more drawing code as needed
+    sprite.fillRect(x, y, width, height, TFT_RED);
 }

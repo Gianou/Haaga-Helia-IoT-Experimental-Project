@@ -10,7 +10,7 @@ class Player : public Renderable
 public:
     Player(int initialX, int initialY, int playerWidth, int playerHeight);
     void update();
-    void draw(TFT_eSPI &tft) override; // Pass a reference to the TFT_eSPI object
+    void draw(TFT_eSprite &sprite) override;
 
 private:
     int x;
@@ -18,7 +18,7 @@ private:
     int width;
     int height;
     int speed;
-    InputManager &inputManager; // Reference to InputManager singleton
+    InputManager &inputManager;
 };
 
 #endif

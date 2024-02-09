@@ -8,7 +8,7 @@ class Debugger : public Renderable
 {
 public:
     Debugger(int x, int y);
-    void draw(TFT_eSPI &tft) override;
+    void draw(TFT_eSprite &sprite) override;
     boolean getIsVisible();
     void setIsVisible(boolean visible);
 

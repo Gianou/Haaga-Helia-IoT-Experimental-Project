@@ -8,7 +8,7 @@ class RenderEngine : public Renderable
 {
 public:
     RenderEngine();
-    void draw(TFT_eSPI &tft) override;
+    void draw(TFT_eSprite &sprite) override;
     void addRenderable(Renderable *renderable);
     void removeRenderable(Renderable *renderable);
 
@@ -16,4 +16,4 @@ private:
     std::vector<Renderable *> renderables;
 };
 
-#endif // RENDER_ENGINE_H
+#endif

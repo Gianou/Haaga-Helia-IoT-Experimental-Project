@@ -1,6 +1,8 @@
 #include "Screen.h"
 
-Screen::Screen() : tft(TFT_eSPI()) {}
+Screen::Screen() : tft(TFT_eSPI()), sprite(&tft)
+{
+}
 
 void Screen::begin()
 {
@@ -9,19 +11,29 @@ void Screen::begin()
     tft.fillScreen(TFT_BLACK);
     tft.drawRect(0, 0, tft.width(), tft.height(), TFT_GREEN);
 
-    // Set "cursor" at top left corner of display (0,0) and select font 4
+    // Splash Screen
     tft.setCursor(0, 4, 4);
-    // Set the font colour to be white with a black background
     tft.setTextColor(TFT_WHITE);
     tft.println("Hello World!");
+
+    /*
+    When refactoring from drawing each element on screen to drawing each element to a Sprite that is then rendered when it is ready,
+    It appeared that the Sprite would get corrupt with a with of 160px but works as expected with a width of 158px
+    */
+    sprite.createSprite(158, 128);
 }
 
-void Screen::draw(TFT_eSPI &wedontneedthereferencehere)
+void Screen::draw(TFT_eSprite &wedontneedthereferencehere)
 {
-    tft.fillScreen(TFT_BLACK); // To delete the previous frame
+    // TODO : remove from here and do in RenderEngine instead, maybe?
+    sprite.pushSprite(0, 0);
 }
 
 TFT_eSPI &Screen::getTFT()
 {
     return tft;
+}
+TFT_eSprite &Screen::getSprite()
+{
+    return sprite;
 }
