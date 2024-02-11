@@ -5,6 +5,7 @@
 #include "Joystick.h"
 #include "InputManager.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "GameEngine.h"
 #include "Debugger.h"
 
@@ -23,6 +24,7 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
+Enemy enemy1 = Enemy(100, 50, 12, 12, 10);
 Debugger debugger = Debugger(4, 4);
 GameEngine gameEngine = GameEngine();
 
@@ -40,6 +42,7 @@ void setup()
   gameEngine.addGameObject(&inputManager);
   gameEngine.addGameObject(&debugger);
   gameEngine.addGameObject(&player);
+  gameEngine.addGameObject(&enemy1);
   gameEngine.addGameObject(&screen);
 
   delay(2000);

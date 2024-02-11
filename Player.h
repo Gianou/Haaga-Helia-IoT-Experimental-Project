@@ -2,7 +2,7 @@
 #define Player_H
 
 #include "InputManager.h"
-#include <TFT_eSPI.h> // Include the library for the display
+#include <TFT_eSPI.h>
 #include "GameObject.h"
 
 class Player : public GameObject
