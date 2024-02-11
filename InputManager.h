@@ -3,14 +3,16 @@
 
 #include "Button.h"
 #include "Joystick.h"
+#include "GameObject.h"
 
-class InputManager
+class InputManager : public GameObject
 {
 public:
     static InputManager &getInstance();
 
     void init(Button &yellow, Button &blue, Joystick &joystick);
-    void update();
+    void update() override;
+    void draw(TFT_eSprite &sprite) override;
     int getBlueButtonValue();
     int getYellowButtonValue();
     int getJoystickXValue();

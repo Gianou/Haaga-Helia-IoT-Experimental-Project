@@ -2,15 +2,16 @@
 #define Screen_H
 
 #include <TFT_eSPI.h>
-#include "Renderable.h"
+#include "GameObject.h"
 #include "InputManager.h"
 
-class Screen : public Renderable
+class Screen : public GameObject
 {
 public:
     Screen();
     void begin();
     void draw(TFT_eSprite &sprite) override;
+    void update() override;
     TFT_eSPI &getTFT();
     TFT_eSprite &getSprite();
 

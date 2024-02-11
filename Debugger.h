@@ -2,13 +2,14 @@
 #define Debugger_H
 
 #include "InputManager.h"
-#include "Renderable.h"
+#include "GameObject.h"
 
-class Debugger : public Renderable
+class Debugger : public GameObject
 {
 public:
     Debugger(int x, int y);
     void draw(TFT_eSprite &sprite) override;
+    void update() override;
     boolean getIsVisible();
     void setIsVisible(boolean visible);
 

@@ -23,6 +23,9 @@ void InputManager::update()
     yellow->update();
     joystick->update();
 }
+void InputManager::draw(TFT_eSprite &sprite)
+{
+}
 
 int InputManager::getBlueButtonValue()
 {

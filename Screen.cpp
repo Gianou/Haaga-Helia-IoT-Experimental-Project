@@ -29,6 +29,8 @@ void Screen::draw(TFT_eSprite &wedontneedthereferencehere)
     sprite.pushSprite(0, 0);
 }
 
+void Screen::update() {}
+
 TFT_eSPI &Screen::getTFT()
 {
     return tft;

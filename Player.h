@@ -3,14 +3,14 @@
 
 #include "InputManager.h"
 #include <TFT_eSPI.h> // Include the library for the display
-#include "Renderable.h"
+#include "GameObject.h"
 
-class Player : public Renderable
+class Player : public GameObject
 {
 public:
     Player(int initialX, int initialY, int playerWidth, int playerHeight);
-    void update();
     void draw(TFT_eSprite &sprite) override;
+    void update() override;
 
 private:
     int x;

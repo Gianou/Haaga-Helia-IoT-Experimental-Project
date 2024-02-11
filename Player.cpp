@@ -16,8 +16,8 @@ void Player::update()
     int mappedJoystickY = map(joystickY, 2000, 1900, -100, 100);
 
     // Handle player movement based on mapped joystick values
-    x += speed * mappedJoystickX / 100; // Normalize to -1 to 1
-    y += speed * mappedJoystickY / 100; // Normalize to -1 to 1
+    x += speed * mappedJoystickX / 200;
+    y += speed * mappedJoystickY / 200;
 
     // Add additional player update logic as needed
     if (x < 0)

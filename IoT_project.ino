@@ -5,7 +5,7 @@
 #include "Joystick.h"
 #include "InputManager.h"
 #include "Player.h"
-#include "RenderEngine.h"
+#include "GameEngine.h"
 #include "Debugger.h"
 
 // SCREEN
@@ -24,7 +24,7 @@ Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
 Debugger debugger = Debugger(4, 4);
-RenderEngine renderEngine = RenderEngine();
+GameEngine gameEngine = GameEngine();
 
 void setup()
 {
@@ -37,20 +37,18 @@ void setup()
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
 
-  renderEngine.addRenderable(&debugger);
-  renderEngine.addRenderable(&player);
-  renderEngine.addRenderable(&screen);
+  gameEngine.addGameObject(&inputManager);
+  gameEngine.addGameObject(&debugger);
+  gameEngine.addGameObject(&player);
+  gameEngine.addGameObject(&screen);
 
   delay(2000);
 }
 
 void loop()
 {
-  // Get reference to the inputManager Singleton and get all inputs
-  InputManager &inputManager = InputManager::getInstance();
-  inputManager.update();
-  renderEngine.draw(screen.getSprite());
+  gameEngine.update();
+  gameEngine.draw(screen.getSprite());
 
-  player.update();
   delay(33);
 }

@@ -19,6 +19,10 @@ void Debugger::draw(TFT_eSprite &sprite)
     }
 }
 
+void Debugger::update()
+{
+}
+
 boolean Debugger::getIsVisible()
 {
     return isVisible;
