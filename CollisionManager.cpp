@@ -1,13 +1,12 @@
 #include "CollisionManager.h"
 
 CollisionManager::CollisionManager(Player &player, Enemy &enemy)
-    : player(player), enemy(enemy), collisionCounter(0)
+    : player(player), enemy(enemy), isColliding(false)
 {
 }
 
 void CollisionManager::draw(TFT_eSprite &sprite)
 {
-    sprite.drawString("Cols : " + String(collisionCounter), 80, 4);
 }
 
 void CollisionManager::update()
@@ -24,7 +23,14 @@ void CollisionManager::checkCollisions()
             player.getY() < enemy.getY() + enemy.getHeight() &&
             player.getY() + player.getHeight() > enemy.getY())
         {
-            collisionCounter++;
+            isColliding = true;
+            return;
         }
     }
+    isColliding = false;
+}
+
+boolean CollisionManager::getIsColliding()
+{
+    return isColliding;
 }

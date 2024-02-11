@@ -26,9 +26,9 @@ Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
 Enemy enemy1 = Enemy(100, 50, 12, 12, 10);
-Debugger debugger = Debugger(4, 4);
 GameEngine gameEngine = GameEngine();
 CollisionManager collisionManager = CollisionManager(player, enemy1);
+Debugger debugger = Debugger(4, 4, collisionManager);
 
 void setup()
 {

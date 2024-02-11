@@ -2,12 +2,13 @@
 #define Debugger_H
 
 #include "InputManager.h"
+#include "CollisionManager.h"
 #include "GameObject.h"
 
 class Debugger : public GameObject
 {
 public:
-    Debugger(int x, int y);
+    Debugger(int x, int y, CollisionManager &collisionManager);
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     boolean getIsVisible();
@@ -18,5 +19,6 @@ private:
     int y;
     boolean isVisible;
     InputManager &inputManager;
+    CollisionManager &collisionManager;
 };
 #endif

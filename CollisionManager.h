@@ -12,11 +12,12 @@ public:
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void checkCollisions();
+    boolean getIsColliding();
 
 private:
     Player &player;
     Enemy &enemy;
-    int collisionCounter;
+    boolean isColliding;
 };
 
 #endif
