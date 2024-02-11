@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "GameEngine.h"
 #include "Debugger.h"
+#include "CollisionManager.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -27,6 +28,7 @@ Player player = Player(50, 50, 20, 20);
 Enemy enemy1 = Enemy(100, 50, 12, 12, 10);
 Debugger debugger = Debugger(4, 4);
 GameEngine gameEngine = GameEngine();
+CollisionManager collisionManager = CollisionManager(player, enemy1);
 
 void setup()
 {
@@ -41,6 +43,7 @@ void setup()
 
   gameEngine.addGameObject(&inputManager);
   gameEngine.addGameObject(&debugger);
+  gameEngine.addGameObject(&collisionManager);
   gameEngine.addGameObject(&player);
   gameEngine.addGameObject(&enemy1);
   gameEngine.addGameObject(&screen);

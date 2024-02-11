@@ -7,6 +7,16 @@ Enemy::Enemy(int x, int y, int width, int height, int speed)
 
 void Enemy::update()
 {
+    updateRightToLeft();
+}
+
+void Enemy::draw(TFT_eSprite &sprite)
+{
+    sprite.fillRect(x, y, width, height, TFT_BLUE);
+}
+
+void Enemy::updateErratic()
+{
     // Erratic enemy movements for demonstration
 
     // Generate random movement
@@ -27,7 +37,13 @@ void Enemy::update()
         y = 128 - height;
 }
 
-void Enemy::draw(TFT_eSprite &sprite)
+void Enemy::updateRightToLeft()
 {
-    sprite.fillRect(x, y, width, height, TFT_BLUE);
+    x -= speed;
+
+    if (x + width < 0)
+    {
+        x = 160;
+        y = random(0, 128 - height);
+    }
 }
