@@ -11,6 +11,7 @@
 #include "CollisionManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "StartUI.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -32,8 +33,8 @@ GameEngine gameEngine = GameEngine();
 CollisionManager collisionManager = CollisionManager(player, enemy1);
 Debugger debugger = Debugger(4, 4, collisionManager);
 Scene gameScene = Scene();
-Scene emptyScene = Scene();
-SceneManager sceneManager = SceneManager();
+Scene startScene = Scene();
+StartUI startUI = StartUI();
 int i = 0;
 
 void setup()
@@ -47,15 +48,19 @@ void setup()
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
 
+  SceneManager &sceneManager = SceneManager::getInstance();
+
   gameEngine.addGameObject(&inputManager);
   gameEngine.addGameObject(&debugger);
+
+  startScene.addGameObject(&startUI);
 
   gameScene.addGameObject(&collisionManager);
   gameScene.addGameObject(&player);
   gameScene.addGameObject(&enemy1);
 
+  sceneManager.addGameObject(&startScene);
   sceneManager.addGameObject(&gameScene);
-  sceneManager.addGameObject(&emptyScene);
 
   gameEngine.addGameObject(&sceneManager);
   gameEngine.addGameObject(&screen);

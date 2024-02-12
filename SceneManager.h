@@ -7,7 +7,8 @@
 class SceneManager : public GameObject
 {
 public:
-    SceneManager();
+    static SceneManager &getInstance();
+
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void addGameObject(GameObject *gameObject);
@@ -17,6 +18,10 @@ public:
 private:
     std::vector<GameObject *> gameObjects;
     int index;
+
+    SceneManager();                                // Private constructor to enforce Singleton pattern
+    SceneManager(const SceneManager &) = delete;   // Disallow copy constructor
+    void operator=(const SceneManager &) = delete; // Disallow assignment operator
 };
 
 #endif

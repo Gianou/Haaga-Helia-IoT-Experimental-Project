@@ -2,7 +2,7 @@
 #include "InputManager.h"
 
 Debugger::Debugger(int x, int y, CollisionManager &collisionManager)
-    : x(x), y(y), isVisible(true), collisionManager(collisionManager), inputManager(InputManager::getInstance())
+    : x(x), y(y), isVisible(false), collisionManager(collisionManager), inputManager(InputManager::getInstance())
 {
 }
 

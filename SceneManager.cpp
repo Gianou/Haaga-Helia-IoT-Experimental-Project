@@ -4,6 +4,12 @@ SceneManager::SceneManager() : index(0)
 {
 }
 
+SceneManager &SceneManager::getInstance()
+{
+    static SceneManager instance; // This ensures that only one instance exists
+    return instance;
+}
+
 void SceneManager::setIndex(int index)
 {
     this->index = index;
