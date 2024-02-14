@@ -22,7 +22,7 @@ void StartUI::draw(TFT_eSprite &sprite)
 {
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(2);
-    sprite.drawString("Something else", 10, 40);
+    sprite.drawString("Start Screen", 10, 40);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);

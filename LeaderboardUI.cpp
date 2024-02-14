@@ -1,14 +1,14 @@
-#include "GameOverUI.h"
+#include "LeaderboardUI.h"
 
-GameOverUI::GameOverUI()
+LeaderboardUI::LeaderboardUI()
 {
 }
 
-void GameOverUI::update()
+void LeaderboardUI::update()
 {
 }
 
-void GameOverUI::draw(TFT_eSprite &sprite)
+void LeaderboardUI::draw(TFT_eSprite &sprite)
 {
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(2);

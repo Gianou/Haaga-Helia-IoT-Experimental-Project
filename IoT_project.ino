@@ -12,6 +12,8 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "StartUI.h"
+#include "GameOverUI.h"
+#include "LeaderboardUI.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -34,7 +36,11 @@ CollisionManager collisionManager = CollisionManager(player, enemy1);
 Debugger debugger = Debugger(4, 4, collisionManager);
 Scene gameScene = Scene();
 Scene startScene = Scene();
+Scene gameOverScene = Scene();
+Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
+GameOverUI gameOverUI = GameOverUI();
+LeaderboardUI leaderboardUI = LeaderboardUI();
 int i = 0;
 
 void setup()
@@ -59,11 +65,19 @@ void setup()
   gameScene.addGameObject(&player);
   gameScene.addGameObject(&enemy1);
 
+  gameOverScene.addGameObject(&gameOverUI);
+
+  LeaderboardScene.addGameObject(&leaderboardUI);
+
   sceneManager.addGameObject(&startScene);
   sceneManager.addGameObject(&gameScene);
+  sceneManager.addGameObject(&gameOverScene);
+  sceneManager.addGameObject(&LeaderboardScene);
 
   gameEngine.addGameObject(&sceneManager);
   gameEngine.addGameObject(&screen);
+
+  sceneManager.setIndex(2);
   delay(2000);
 }
 
