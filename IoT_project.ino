@@ -14,6 +14,7 @@
 #include "StartUI.h"
 #include "GameOverUI.h"
 #include "LeaderboardUI.h"
+#include "Connexion.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -41,12 +42,14 @@ Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
 GameOverUI gameOverUI = GameOverUI();
 LeaderboardUI leaderboardUI = LeaderboardUI();
+Connexion connexion = Connexion ("XperiaX_b4dd", "d08fa948637d");
 int i = 0;
 
 void setup()
 {
   Serial.begin(9600);
 
+  connexion.begin();
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
