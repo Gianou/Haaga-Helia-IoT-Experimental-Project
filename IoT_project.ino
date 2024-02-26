@@ -14,6 +14,7 @@
 #include "StartUI.h"
 #include "GameOverUI.h"
 #include "LeaderboardUI.h"
+#include "EnemyManager.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -30,9 +31,11 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
-Enemy enemy1 = Enemy(100, 50, 12, 12, 10);
+EnemyManager enemyManager = EnemyManager();
+// Enemy enemy1 = Enemy(100, 50, 12, 12, 10);
+// Enemy enemy2 = Enemy(120, 900, 12, 12, 10);
 GameEngine gameEngine = GameEngine();
-CollisionManager collisionManager = CollisionManager(player, enemy1);
+CollisionManager collisionManager = CollisionManager(player, enemyManager);
 Debugger debugger = Debugger(4, 4, collisionManager);
 Scene gameScene = Scene();
 Scene startScene = Scene();
@@ -61,9 +64,11 @@ void setup()
 
   startScene.addGameObject(&startUI);
 
+  // enemyManager.addGameObject(&enemy1);
+  // enemyManager.addGameObject(&enemy2);
   gameScene.addGameObject(&collisionManager);
   gameScene.addGameObject(&player);
-  gameScene.addGameObject(&enemy1);
+  gameScene.addGameObject(&enemyManager);
 
   gameOverScene.addGameObject(&gameOverUI);
 
@@ -77,7 +82,7 @@ void setup()
   gameEngine.addGameObject(&sceneManager);
   gameEngine.addGameObject(&screen);
 
-  sceneManager.setIndex(2);
+  sceneManager.setIndex(0);
   delay(2000);
 }
 

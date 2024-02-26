@@ -1,7 +1,7 @@
 #include "CollisionManager.h"
 
-CollisionManager::CollisionManager(Player &player, Enemy &enemy)
-    : player(player), enemy(enemy), isColliding(false)
+CollisionManager::CollisionManager(Player &player, EnemyManager &enemyManager)
+    : player(player), enemyManager(enemyManager), isColliding(false)
 {
 }
 
@@ -16,12 +16,14 @@ void CollisionManager::update()
 
 void CollisionManager::checkCollisions()
 {
-    for (int i = 0; i < 2; i++)
+    const std::vector<Enemy *> &enemies = enemyManager.getEnemies();
+
+    for (const Enemy *enemy : enemies)
     {
-        if (player.getX() < enemy.getX() + enemy.getWidth() &&
-            player.getX() + player.getWidth() > enemy.getX() &&
-            player.getY() < enemy.getY() + enemy.getHeight() &&
-            player.getY() + player.getHeight() > enemy.getY())
+        if (player.getX() < enemy->getX() + enemy->getWidth() &&
+            player.getX() + player.getWidth() > enemy->getX() &&
+            player.getY() < enemy->getY() + enemy->getHeight() &&
+            player.getY() + player.getHeight() > enemy->getY())
         {
             isColliding = true;
             return;

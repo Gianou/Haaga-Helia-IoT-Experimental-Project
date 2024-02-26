@@ -4,11 +4,12 @@
 #include <vector>
 #include "Player.h"
 #include "Enemy.h"
+#include "EnemyManager.h"
 
 class CollisionManager : public GameObject
 {
 public:
-    CollisionManager(Player &player, Enemy &enemy);
+    CollisionManager(Player &player, EnemyManager &enemyManager);
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void checkCollisions();
@@ -16,7 +17,7 @@ public:
 
 private:
     Player &player;
-    Enemy &enemy;
+    EnemyManager &enemyManager;
     boolean isColliding;
 };
 

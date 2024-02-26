@@ -13,15 +13,6 @@ void Player::update()
     boolean yell = inputManager.getYellowButtonValue();
     boolean blue = inputManager.getBlueButtonValue();
 
-    if (!yell)
-    {
-        y -= speed * 50;
-    }
-    if (!blue)
-    {
-        y += speed * 50;
-    }
-
     // Map joystick values to a range of -100 to 100
     int mappedJoystickX = map(joystickX, 2000, 1900, -100, 100);
     int mappedJoystickY = map(joystickY, 2000, 1900, -100, 100);
