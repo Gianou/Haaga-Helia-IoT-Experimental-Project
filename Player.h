@@ -2,6 +2,7 @@
 #define Player_H
 
 #include "InputManager.h"
+#include "SceneManager.h"
 #include <TFT_eSPI.h>
 #include "GameObject.h"
 
@@ -11,6 +12,7 @@ public:
     Player(int initialX, int initialY, int playerWidth, int playerHeight);
     void draw(TFT_eSprite &sprite) override;
     void update() override;
+    void takeHit();
 
     // Getters
     int getX() const { return x; }
@@ -24,6 +26,11 @@ private:
     int width;
     int height;
     int speed;
+    int life;
+    boolean invincible;
+    int invincibleCounter;
+    int invincibleDuration;
+    int score;
     InputManager &inputManager;
 };
 

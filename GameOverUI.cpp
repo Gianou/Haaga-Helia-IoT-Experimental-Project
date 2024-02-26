@@ -6,6 +6,16 @@ GameOverUI::GameOverUI()
 
 void GameOverUI::update()
 {
+    /*
+    Check for inputs and set index in SceneManager
+    */
+    InputManager &inputManager = InputManager::getInstance();
+    SceneManager &sceneManager = SceneManager::getInstance();
+
+    if (!inputManager.getBlueButtonValue())
+    {
+        sceneManager.setIndex(1);
+    }
 }
 
 void GameOverUI::draw(TFT_eSprite &sprite)

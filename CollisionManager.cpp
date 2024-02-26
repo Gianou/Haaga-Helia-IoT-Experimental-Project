@@ -26,6 +26,7 @@ void CollisionManager::checkCollisions()
             player.getY() + player.getHeight() > enemy->getY())
         {
             isColliding = true;
+            player.takeHit();
             return;
         }
     }

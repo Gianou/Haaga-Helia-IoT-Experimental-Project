@@ -1,12 +1,23 @@
 #include "Player.h"
 
 Player::Player(int initialX, int initialY, int playerWidth, int playerHeight)
-    : x(initialX), y(initialY), width(playerWidth), height(playerHeight), speed(1), inputManager(InputManager::getInstance())
+    : x(initialX),
+      y(initialY),
+      width(playerWidth),
+      height(playerHeight),
+      speed(1),
+      life(3),
+      invincible(false),
+      invincibleCounter(0),
+      invincibleDuration(12),
+      score(0),
+      inputManager(InputManager::getInstance())
 {
 }
 
 void Player::update()
 {
+    score++;
     // Get joystick values
     int joystickX = inputManager.getJoystickXValue();
     int joystickY = inputManager.getJoystickYValue();
@@ -38,9 +49,53 @@ void Player::update()
     {
         y = 128 - height;
     }
+
+    // Invincibility stuff
+    if (invincible)
+    {
+        invincibleCounter++;
+        if (invincibleCounter >= invincibleDuration)
+        {
+            invincible = false;
+            invincibleCounter = 0;
+        }
+        return;
+    }
 }
 
 void Player::draw(TFT_eSprite &sprite)
 {
-    sprite.fillRect(x, y, width, height, TFT_RED);
+    // Draw player
+    if (invincible)
+    {
+        sprite.fillRect(x, y, width, height, TFT_WHITE);
+    }
+    else
+    {
+        sprite.fillRect(x, y, width, height, TFT_RED);
+    }
+
+    // Draw player's life
+    for (int i = 0; i < life; i++)
+    {
+        sprite.fillCircle(10 + i * 15, 10, 5, TFT_RED);
+    }
+    // Draw score
+    sprite.drawString(String(score), 138, 10);
+}
+
+void Player::takeHit()
+{
+    if (invincible)
+    {
+        return;
+    }
+
+    life--;
+    invincible = true;
+    if (life <= 0)
+    {
+        SceneManager &sceneManager = SceneManager::getInstance();
+        sceneManager.setIndex(2);
+    }
 }
