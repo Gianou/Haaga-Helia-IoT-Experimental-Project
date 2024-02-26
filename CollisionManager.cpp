@@ -1,7 +1,7 @@
 #include "CollisionManager.h"
 
-CollisionManager::CollisionManager(Player &player, EnemyManager &enemyManager)
-    : player(player), enemyManager(enemyManager), isColliding(false)
+CollisionManager::CollisionManager(Player &player)
+    : player(player), isColliding(false)
 {
 }
 
@@ -16,6 +16,7 @@ void CollisionManager::update()
 
 void CollisionManager::checkCollisions()
 {
+    EnemyManager &enemyManager = EnemyManager::getInstance();
     const std::vector<Enemy *> &enemies = enemyManager.getEnemies();
 
     for (const Enemy *enemy : enemies)

@@ -8,14 +8,16 @@
 class EnemyManager : public GameObject
 {
 public:
-    EnemyManager();
+    static EnemyManager &getInstance();
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void addGameObject(Enemy *gameObject);
     void removeGameObject(Enemy *gameObject);
     const std::vector<Enemy *> &getEnemies() const;
+    void reset();
 
 private:
+    EnemyManager(); // Private constructor to prevent external instantiation
     std::vector<Enemy *> enemies;
 };
 

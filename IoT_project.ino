@@ -31,9 +31,9 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
-EnemyManager enemyManager = EnemyManager();
+// EnemyManager enemyManager = EnemyManager();
 GameEngine gameEngine = GameEngine();
-CollisionManager collisionManager = CollisionManager(player, enemyManager);
+CollisionManager collisionManager = CollisionManager(player);
 Debugger debugger = Debugger(4, 4, collisionManager);
 Scene gameScene = Scene();
 Scene startScene = Scene();
@@ -54,6 +54,7 @@ void setup()
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
+  EnemyManager &enemyManager = EnemyManager::getInstance();
 
   SceneManager &sceneManager = SceneManager::getInstance();
 

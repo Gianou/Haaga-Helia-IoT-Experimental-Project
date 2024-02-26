@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(int x, int y, int width, int height, int speed)
-    : x(x), y(y), width(width), height(height), speed(speed)
+    : x(x), y(y), width(width), height(height), speed(speed), initialX(x), initialY(y)
 {
 }
 
@@ -13,6 +13,12 @@ void Enemy::update()
 void Enemy::draw(TFT_eSprite &sprite)
 {
     sprite.fillRect(x, y, width, height, TFT_BLUE);
+}
+
+void Enemy::reset()
+{
+    x = initialX;
+    y = initialY;
 }
 
 void Enemy::updateErratic()

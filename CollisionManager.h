@@ -9,7 +9,7 @@
 class CollisionManager : public GameObject
 {
 public:
-    CollisionManager(Player &player, EnemyManager &enemyManager);
+    CollisionManager(Player &player);
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void checkCollisions();
@@ -17,7 +17,6 @@ public:
 
 private:
     Player &player;
-    EnemyManager &enemyManager;
     boolean isColliding;
 };
 

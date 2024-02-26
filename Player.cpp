@@ -1,8 +1,8 @@
 #include "Player.h"
 
-Player::Player(int initialX, int initialY, int playerWidth, int playerHeight)
-    : x(initialX),
-      y(initialY),
+Player::Player(int x, int y, int playerWidth, int playerHeight)
+    : x(x),
+      y(y),
       width(playerWidth),
       height(playerHeight),
       speed(1),
@@ -11,6 +11,9 @@ Player::Player(int initialX, int initialY, int playerWidth, int playerHeight)
       invincibleCounter(0),
       invincibleDuration(12),
       score(0),
+      initialX(x),
+      initialY(y),
+      initialLife(life),
       inputManager(InputManager::getInstance())
 {
 }
@@ -95,7 +98,19 @@ void Player::takeHit()
     invincible = true;
     if (life <= 0)
     {
+        EnemyManager &enemyManager = EnemyManager::getInstance();
+        enemyManager.reset();
+        reset();
         SceneManager &sceneManager = SceneManager::getInstance();
         sceneManager.setIndex(2);
     }
+}
+
+void Player::reset()
+{
+    x = initialX;
+    y = initialY;
+    life = initialLife;
+    invincible = false;
+    score = 0;
 }

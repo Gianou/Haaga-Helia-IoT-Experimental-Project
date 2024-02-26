@@ -3,6 +3,7 @@
 
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "EnemyManager.h"
 #include <TFT_eSPI.h>
 #include "GameObject.h"
 
@@ -13,6 +14,7 @@ public:
     void draw(TFT_eSprite &sprite) override;
     void update() override;
     void takeHit();
+    void reset();
 
     // Getters
     int getX() const { return x; }
@@ -31,6 +33,12 @@ private:
     int invincibleCounter;
     int invincibleDuration;
     int score;
+
+    int initialX;
+    int initialY;
+    int initialLife;
+    int initialScore;
+
     InputManager &inputManager;
 };
 

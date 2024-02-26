@@ -11,6 +11,7 @@ public:
     void update() override;
     void updateRightToLeft();
     void updateErratic();
+    void reset();
 
     // Getters
     int getX() const { return x; }
@@ -24,6 +25,8 @@ private:
     int width;
     int height;
     int speed;
+    int initialX;
+    int initialY;
 };
 
 #endif

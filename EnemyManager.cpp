@@ -2,13 +2,19 @@
 
 EnemyManager::EnemyManager()
 {
-    Enemy *enemy1 = new Enemy(100, 50, 12, 12, 10);
-    Enemy *enemy2 = new Enemy(160, 90, 12, 12, 10);
-    Enemy *enemy3 = new Enemy(220, 10, 12, 12, 10);
+    Enemy *enemy1 = new Enemy(160, 50, 12, 12, 10);
+    Enemy *enemy2 = new Enemy(220, 90, 12, 12, 10);
+    Enemy *enemy3 = new Enemy(280, 10, 12, 12, 10);
 
     addGameObject(enemy1);
     addGameObject(enemy2);
     addGameObject(enemy3);
+}
+
+EnemyManager &EnemyManager::getInstance()
+{
+    static EnemyManager instance; // This ensures that only one instance exists
+    return instance;
 }
 
 void EnemyManager::draw(TFT_eSprite &sprite)
@@ -41,6 +47,14 @@ void EnemyManager::removeGameObject(Enemy *gameObject)
     {
         enemies.erase(it);
         delete gameObject; // Assuming you are responsible for memory management
+    }
+}
+
+void EnemyManager::reset()
+{
+    for (Enemy *enemy : enemies)
+    {
+        enemy->reset();
     }
 }
 
