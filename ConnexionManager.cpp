@@ -1,4 +1,4 @@
-#include "Connexion.h"
+#include "ConnexionManager.h"
 
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
@@ -9,7 +9,7 @@
 FirebaseConfig config;
 FirebaseAuth auth;
 
-Connexion::Connexion(const char* ssid, const char* password, const char* apiKey, const char* databaseUrl) {
+ConnexionManager::ConnexionManager(const char* ssid, const char* password, const char* apiKey, const char* databaseUrl) {
   _ssid = ssid;
   _password = password;
   _apiKey = apiKey;
@@ -18,7 +18,7 @@ Connexion::Connexion(const char* ssid, const char* password, const char* apiKey,
   _sendDataPrevMillis = 0;
 }
 
-void Connexion::begin() {
+void ConnexionManager::begin() {
   delay(1000);
 
   WiFi.begin(_ssid, _password);
@@ -51,12 +51,12 @@ void Connexion::begin() {
   
 }
 
-bool Connexion::isConnected() {
+bool ConnexionManager::isConnected() {
   return WiFi.status() == WL_CONNECTED;
 }
 
 
-bool Connexion::sendData(String pseudo, int count) {
+bool ConnexionManager::sendData(String pseudo, int count) {
   if (!isConnected()) return false;
   Serial.println("sendData");
   Serial.println(Firebase.ready());
@@ -76,7 +76,7 @@ bool Connexion::sendData(String pseudo, int count) {
   return false;
 }
 
-String Connexion::receiveData() {
+String ConnexionManager::receiveData() {
   if (!isConnected()) return "";
 
   bool success = Firebase.RTDB.getJSON(&_fbdo, "score_board/");

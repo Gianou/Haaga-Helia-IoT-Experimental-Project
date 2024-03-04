@@ -1,13 +1,13 @@
-#ifndef CONNEXION_H
-#define CONNEXION_H
+#ifndef CONNEXION_MANAGER_H
+#define CONNEXION_MANAGER_H
 
 #include <Arduino.h>
 #include <WiFi.h>
 
 #include <Firebase_ESP_Client.h>
-class Connexion {
+class ConnexionManager {
   public:
-    Connexion(const char* ssid, const char* password, const char* apiKey, const char* databaseUrl);
+    ConnexionManager(const char* ssid, const char* password, const char* apiKey, const char* databaseUrl);
     void begin();
     bool isConnected();
     bool sendData(String pseudo, int count);
