@@ -1,6 +1,8 @@
 #ifndef SCORE_MANAGER_H
 #define SCORE_MANAGER_H
 
+#include <Arduino.h>
+
 class ScoreManager
 {
 public:
