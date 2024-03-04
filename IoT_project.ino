@@ -42,7 +42,8 @@ Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
 GameOverUI gameOverUI = GameOverUI();
 LeaderboardUI leaderboardUI = LeaderboardUI();
-Connexion connexion = Connexion ("XperiaX_b4dd", "d08fa948637d");
+Connexion connexion = Connexion ("XperiaX_b4dd", "d08fa948637d", "AIzaSyDthqQ1rZ20Qo3407_EO4a8_RSrIAXiyuo", "https://esp32-f271c-default-rtdb.europe-west1.firebasedatabase.app/"
+);
 int i = 0;
 
 void setup()
@@ -53,6 +54,7 @@ void setup()
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
+  bool sendData = connexion.sendData("Pseudo", 0);
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
