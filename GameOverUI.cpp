@@ -31,15 +31,32 @@ void GameOverUI::draw(TFT_eSprite &sprite)
 
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(2);
-    sprite.drawString("GAME OVER", 10, 20);
+    sprite.drawString("GAME OVER", 10, 10);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("Final score: " + String(score), 10, 40);
+    sprite.drawString("Final score: " + String(score), 10, 30);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("Username: " + String(nameInput[0]) + " " + String(nameInput[1]) + " " + String(nameInput[2]), 10, 60);
+    sprite.drawString("Username: ", 10, 60);
+
+    for (int i = 0; i < 3; ++i)
+    {
+        if (i == currentCharXIndex)
+        {
+
+            sprite.setTextColor(TFT_GREENYELLOW);
+            sprite.setTextSize(1);
+            sprite.drawString(String(userSelection[i]), 85 + i * 20, 60);
+            sprite.setTextSize(1);
+            sprite.setTextColor(TFT_WHITE);
+        }
+        else
+        {
+            sprite.drawString(String(nameInput[i]), 85 + i * 20, 60);
+        }
+    }
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
@@ -81,7 +98,7 @@ void GameOverUI::handleInput()
     {
         if (inputManager.getJoystickYValue() > 4000)
         {
-            currentCharYIndex > 0 ? currentCharYIndex-- : currentCharYIndex = 0;
+            currentCharYIndex > 0 ? currentCharYIndex-- : currentCharYIndex = 25;
             moveYAxis = false;
         }
         else if (inputManager.getJoystickYValue() < 200)
