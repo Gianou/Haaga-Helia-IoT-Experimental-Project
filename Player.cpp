@@ -96,11 +96,16 @@ void Player::takeHit()
 
     life--;
     invincible = true;
+    // GAME OVER
     if (life <= 0)
     {
+        // Save score
+        ScoreManager &scoreManager = ScoreManager::getInstance();
+        scoreManager.setScore(score);
+        // Reset player and enemies
         EnemyManager &enemyManager = EnemyManager::getInstance();
         enemyManager.reset();
-        reset();
+        reset(); // must happen after the score is saved in ScoreManager
         SceneManager &sceneManager = SceneManager::getInstance();
         sceneManager.setIndex(2);
     }
