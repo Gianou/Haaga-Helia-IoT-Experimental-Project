@@ -5,16 +5,19 @@
 #include <WiFi.h>
 
 #include <Firebase_ESP_Client.h>
+#include "config.h"
 class ConnexionManager
 {
 public:
-  ConnexionManager(const char *ssid, const char *password, const char *apiKey, const char *databaseUrl);
+  static ConnexionManager &getInstance();
   void begin();
   bool isConnected();
   bool sendData(String pseudo, int count);
   String receiveData();
 
 private:
+  ConnexionManager();
+
   const char *_ssid;
   const char *_password;
 

@@ -6,7 +6,7 @@
 FirebaseConfig config;
 FirebaseAuth auth;
 
-ConnexionManager::ConnexionManager(const char *ssid, const char *password, const char *apiKey, const char *databaseUrl)
+ConnexionManager::ConnexionManager()
 {
   _ssid = ssid;
   _password = password;
@@ -14,6 +14,12 @@ ConnexionManager::ConnexionManager(const char *ssid, const char *password, const
   _databaseUrl = databaseUrl;
   _signupOK = false;
   _sendDataPrevMillis = 0;
+}
+
+ConnexionManager &ConnexionManager::getInstance()
+{
+  static ConnexionManager instance; // This ensures that only one instance exists
+  return instance;
 }
 
 void ConnexionManager::begin()
@@ -60,11 +66,6 @@ bool ConnexionManager::sendData(String pseudo, int count)
 {
   if (!isConnected())
     return false;
-  Serial.println("sendData");
-  Serial.println(Firebase.ready());
-  Serial.println(_signupOK);
-  Serial.println(millis() - _sendDataPrevMillis > 15000);
-  Serial.println(_sendDataPrevMillis == 0);
 
   if (Firebase.ready() && _signupOK && (millis() - _sendDataPrevMillis > 15000 || _sendDataPrevMillis == 0))
   {
@@ -72,7 +73,6 @@ bool ConnexionManager::sendData(String pseudo, int count)
     FirebaseJson json;
     json.set("pseudo", pseudo);
     json.set("score", count);
-    Serial.println("sendData2");
 
     return Firebase.RTDB.pushJSON(&_fbdo, "score_board/", &json);
   }
