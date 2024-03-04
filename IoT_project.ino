@@ -15,6 +15,7 @@
 #include "GameOverUI.h"
 #include "LeaderboardUI.h"
 #include "EnemyManager.h"
+#include "ConnexionManager.h"
 
 // SCREEN
 Screen screen = Screen();
@@ -42,15 +43,18 @@ Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
 GameOverUI gameOverUI = GameOverUI();
 LeaderboardUI leaderboardUI = LeaderboardUI();
+ConnexionManager connexionManager = ConnexionManager("XperiaX_b4dd", "d08fa948637d", "AIzaSyDthqQ1rZ20Qo3407_EO4a8_RSrIAXiyuo", "https://esp32-f271c-default-rtdb.europe-west1.firebasedatabase.app/");
 int i = 0;
 
 void setup()
 {
   Serial.begin(9600);
 
+  connexionManager.begin();
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
+  bool sendData = connexionManager.sendData("Pseudo", 0);
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
