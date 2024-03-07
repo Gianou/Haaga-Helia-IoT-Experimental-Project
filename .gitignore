@@ -5,5 +5,4 @@
 /.pio
 /.vscode
 
-config.h
 config.cpp
