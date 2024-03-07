@@ -4,6 +4,8 @@
 #include <TFT_eSPI.h>
 #include "GameObject.h"
 #include "InputManager.h"
+#include "ConnexionManager.h"
+#include "config.h"
 
 class Screen : public GameObject
 {

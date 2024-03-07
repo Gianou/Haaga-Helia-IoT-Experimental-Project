@@ -22,16 +22,33 @@ ConnexionManager &ConnexionManager::getInstance()
   return instance;
 }
 
-void ConnexionManager::begin()
+void ConnexionManager::begin(TFT_eSPI tft)
 {
   delay(1000);
 
   WiFi.begin(_ssid, _password);
   Serial.println("\nConnecting");
 
+  int x = 10;
   while (WiFi.status() != WL_CONNECTED)
   {
     Serial.print(".");
+    tft.setTextSize(1);
+    tft.setCursor(x, 80);
+    tft.setTextColor(TFT_WHITE);
+    if (x > 20)
+    {
+      x = 10;
+      tft.fillRect(x, 80, 120, 60, TFT_BLACK);
+      tft.setCursor(x, 80);
+      tft.print(".");
+    }
+    else
+    {
+      tft.print(".");
+    }
+
+    x += 5;
     delay(100);
   }
 

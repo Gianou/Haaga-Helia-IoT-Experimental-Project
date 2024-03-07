@@ -32,7 +32,6 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
 Player player = Player(50, 50, 20, 20);
-// EnemyManager enemyManager = EnemyManager();
 GameEngine gameEngine = GameEngine();
 CollisionManager collisionManager = CollisionManager(player);
 Debugger debugger = Debugger(4, 4, collisionManager);
@@ -43,19 +42,17 @@ Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
 GameOverUI gameOverUI = GameOverUI();
 LeaderboardUI leaderboardUI = LeaderboardUI();
-// ConnexionManager connexionManager = ConnexionManager();
-int i = 0;
 
 void setup()
 {
   Serial.begin(9600);
 
-  ConnexionManager &connexionManager = ConnexionManager::getInstance();
-  connexionManager.begin();
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
-  // bool sendData = connexionManager.sendData("Pseudo", 0);
+
+  ConnexionManager &connexionManager = ConnexionManager::getInstance();
+  connexionManager.begin(screen.getTFT());
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
