@@ -69,11 +69,24 @@ bool ConnexionManager::sendData(String pseudo, int count)
 
   if (Firebase.ready() && _signupOK && (millis() - _sendDataPrevMillis > 15000 || _sendDataPrevMillis == 0))
   {
+   Firebase.RTDB.getInt(&_fbdo, "index");
+   int num = _fbdo.intData();
+    Serial.println(num);
     _sendDataPrevMillis = millis();
     FirebaseJson json;
     json.set("pseudo", pseudo);
     json.set("score", count);
-
+    
+    String indexStr = String(num);
+    String path = "score_board/";
+    String pathIndex = path += indexStr;
+    String pathPseudo = path += "/pseudo";
+    String pathScore = pathIndex += "/score";
+    if (Firebase.RTDB.setInt(&_fbdo, pathScore, count) && Firebase.RTDB.setString(&_fbdo, pathPseudo, pseudo))
+    {
+      Firebase.RTDB.setInt(&_fbdo, "index/", num + 1);
+    }
+    
     return Firebase.RTDB.pushJSON(&_fbdo, "score_board/", &json);
   }
   return false;

@@ -55,7 +55,7 @@ void setup()
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
-  // bool sendData = connexionManager.sendData("Pseudo", 0);
+  bool sendData = connexionManager.sendData("Pseudo", 0);
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);
@@ -84,7 +84,7 @@ void setup()
   gameEngine.addGameObject(&sceneManager);
   gameEngine.addGameObject(&screen);
 
-  sceneManager.setIndex(0);
+  sceneManager.setIndex(3);
   delay(2000);
 }
 
