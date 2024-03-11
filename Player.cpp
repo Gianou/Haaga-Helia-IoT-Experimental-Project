@@ -5,7 +5,7 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
       y(y),
       width(playerWidth),
       height(playerHeight),
-      speed(1),
+      speed(3),
       life(3),
       invincible(false),
       invincibleCounter(0),
@@ -20,41 +20,92 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
 
 void Player::update()
 {
-    score++;
-    // Save score
-    ScoreManager &scoreManager = ScoreManager::getInstance();
-    scoreManager.setScore(score);
-
     // Get joystick values
     int joystickX = inputManager.getJoystickXValue();
     int joystickY = inputManager.getJoystickYValue();
     boolean yell = inputManager.getYellowButtonValue();
     boolean blue = inputManager.getBlueButtonValue();
-
-    // Map joystick values to a range of -100 to 100
-    int mappedJoystickX = map(joystickX, 2000, 1900, -100, 100);
-    int mappedJoystickY = map(joystickY, 2000, 1900, -100, 100);
-
-    // Handle player movement based on mapped joystick values
-    x += speed * mappedJoystickX / 200;
-    y += speed * mappedJoystickY / 200;
-
-    // Add additional player update logic as needed
-    if (x < 0)
+    float distance = inputManager.getSonarDistance();
+    /*
+    if (distance < 1)
     {
-        x = 0;
+        distance = 1;
+    }*/
+
+    int max = 14;
+    if (distance == 0 && distance >= 14)
+    {
+        return;
     }
+    y = (128 - height) - ((128 - height) / max * distance);
+
+    /*
+        if (joystickY >= 2200)
+        {
+            y -= speed;
+        }
+        if (joystickY <= 1900)
+        {
+            y += speed;
+        }
+        */
+
+    /*
+        int mappedJoystickY = map(joystickY, 2200, 1800, -100, 100);
+        y += speed * mappedJoystickY / 200;
+    */
     if (y < 0)
     {
         y = 0;
     }
-    if (x > 160 - width)
-    {
-        x = 160 - width;
-    }
     if (y > 128 - height)
     {
         y = 128 - height;
+    }
+
+    /*
+        // Map joystick values to a range of -100 to 100
+        int mappedJoystickX = map(joystickX, 2100, 1900, -100, 100);
+        int mappedJoystickY = map(joystickY, 2100, 1900, -100, 100);
+
+        // Handle player movement based on mapped joystick values
+        // x += speed * mappedJoystickX / 200;
+        y += speed * mappedJoystickY / 200;
+
+        // Add additional player update logic as needed
+
+        if (x < 0)
+        {
+            x = 0;
+        }
+        if (y < 0)
+        {
+            y = 0;
+        }
+        if (x > 160 - width)
+        {
+            x = 160 - width;
+        }
+        if (y > 128 - height)
+        {
+            y = 128 - height;
+        }
+        */
+
+    score++;
+    // Save score
+    ScoreManager &scoreManager = ScoreManager::getInstance();
+    scoreManager.setScore(score);
+
+    // GAME OVER
+    if (life <= 0)
+    {
+        // Reset player and enemies
+        EnemyManager &enemyManager = EnemyManager::getInstance();
+        enemyManager.reset();
+        reset(); // must happen after the score is saved in ScoreManager
+        SceneManager &sceneManager = SceneManager::getInstance();
+        sceneManager.setIndex(2);
     }
 
     // Invincibility stuff
@@ -100,16 +151,6 @@ void Player::takeHit()
 
     life--;
     invincible = true;
-    // GAME OVER
-    if (life <= 0)
-    {
-        // Reset player and enemies
-        EnemyManager &enemyManager = EnemyManager::getInstance();
-        enemyManager.reset();
-        reset(); // must happen after the score is saved in ScoreManager
-        SceneManager &sceneManager = SceneManager::getInstance();
-        sceneManager.setIndex(2);
-    }
 }
 
 void Player::reset()

@@ -2,12 +2,13 @@
 
 EnemyManager::EnemyManager()
 {
-    Enemy *enemy1 = new Enemy(158, 40, 12, 12, 10); // 0, 20, 40, 60, 80, 100
-    Enemy *enemy2 = new Enemy(158, 80, 12, 12, 10);
-    Enemy *enemy3 = new Enemy(158, 0, 12, 12, 10);
-    Enemy *enemy4 = new Enemy(158, 100, 12, 12, 10);
-    Enemy *enemy5 = new Enemy(158, 20, 12, 12, 10);
-    Enemy *enemy6 = new Enemy(158, 60, 12, 12, 10);
+    int speed = 10;
+    Enemy *enemy1 = new Enemy(158, 40, 12, 12, speed); // 0, 20, 40, 60, 80, 100
+    Enemy *enemy2 = new Enemy(158, 80, 12, 12, speed);
+    Enemy *enemy3 = new Enemy(158, 0, 12, 12, speed);
+    Enemy *enemy4 = new Enemy(158, 100, 12, 12, speed);
+    Enemy *enemy5 = new Enemy(158, 20, 12, 12, speed);
+    Enemy *enemy6 = new Enemy(158, 60, 12, 12, speed);
 
     addGameObject(enemy1);
     addGameObject(enemy2);

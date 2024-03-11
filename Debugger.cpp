@@ -16,6 +16,7 @@ void Debugger::draw(TFT_eSprite &sprite)
         sprite.drawString("Blue : " + String(inputManager.getBlueButtonValue()), x, y + ln);
         sprite.drawString("X : " + String(inputManager.getJoystickXValue()), x, y + 2 * ln);
         sprite.drawString("Y : " + String(inputManager.getJoystickYValue()), x, y + 3 * ln);
+        sprite.drawString("Dist : " + String(inputManager.getSonarDistance()), x, y + 4 * ln);
 
         // COLLISIONS
         sprite.drawString("Cols : " + String(collisionManager.getIsColliding()), 80, 4);
