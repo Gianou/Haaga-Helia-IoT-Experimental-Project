@@ -49,7 +49,8 @@ void Enemy::updateRightToLeft()
 
     if (x + width < 0)
     {
-        x = 160;
+        x = 158;
         y = random(0, 128 - height);
+        // y = 60;
     }
 }

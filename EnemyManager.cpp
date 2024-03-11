@@ -2,13 +2,21 @@
 
 EnemyManager::EnemyManager()
 {
-    Enemy *enemy1 = new Enemy(160, 50, 12, 12, 10);
-    Enemy *enemy2 = new Enemy(220, 90, 12, 12, 10);
-    Enemy *enemy3 = new Enemy(280, 10, 12, 12, 10);
+    Enemy *enemy1 = new Enemy(158, 40, 12, 12, 10); // 0, 20, 40, 60, 80, 100
+    Enemy *enemy2 = new Enemy(158, 80, 12, 12, 10);
+    Enemy *enemy3 = new Enemy(158, 0, 12, 12, 10);
+    Enemy *enemy4 = new Enemy(158, 100, 12, 12, 10);
+    Enemy *enemy5 = new Enemy(158, 20, 12, 12, 10);
+    Enemy *enemy6 = new Enemy(158, 60, 12, 12, 10);
 
     addGameObject(enemy1);
     addGameObject(enemy2);
     addGameObject(enemy3);
+    addGameObject(enemy4);
+    // addGameObject(enemy5);
+    // addGameObject(enemy6);
+
+    numberOfEnemies = 1;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -19,17 +27,24 @@ EnemyManager &EnemyManager::getInstance()
 
 void EnemyManager::draw(TFT_eSprite &sprite)
 {
-    for (Enemy *enemy : enemies)
+    for (int i = 0; i < numberOfEnemies; i++)
     {
-        enemy->draw(sprite);
+        enemies[i]->draw(sprite);
     }
 }
 
 void EnemyManager::update()
 {
-    for (Enemy *enemy : enemies)
+
+    ScoreManager &scoreManager = ScoreManager::getInstance();
+    if (scoreManager.getScore() % (74 + 12) == 0 && numberOfEnemies < 4)
     {
-        enemy->update();
+        numberOfEnemies++;
+    }
+    for (int i = 0; i < numberOfEnemies; i++)
+
+    {
+        enemies[i]->update();
     }
 }
 
@@ -52,6 +67,7 @@ void EnemyManager::removeGameObject(Enemy *gameObject)
 
 void EnemyManager::reset()
 {
+    numberOfEnemies = 1;
     for (Enemy *enemy : enemies)
     {
         enemy->reset();

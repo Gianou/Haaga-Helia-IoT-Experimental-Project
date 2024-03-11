@@ -21,6 +21,10 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
 void Player::update()
 {
     score++;
+    // Save score
+    ScoreManager &scoreManager = ScoreManager::getInstance();
+    scoreManager.setScore(score);
+
     // Get joystick values
     int joystickX = inputManager.getJoystickXValue();
     int joystickY = inputManager.getJoystickYValue();
@@ -99,9 +103,6 @@ void Player::takeHit()
     // GAME OVER
     if (life <= 0)
     {
-        // Save score
-        ScoreManager &scoreManager = ScoreManager::getInstance();
-        scoreManager.setScore(score);
         // Reset player and enemies
         EnemyManager &enemyManager = EnemyManager::getInstance();
         enemyManager.reset();
