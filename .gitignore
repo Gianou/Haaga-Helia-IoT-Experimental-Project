@@ -4,5 +4,6 @@
 *.log
 /.pio
 /.vscode
+/build
 
 config.cpp

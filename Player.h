@@ -17,7 +17,6 @@ public:
     void update() override;
     void takeHit();
     void reset();
-
     // Getters
     int getX() const { return x; }
     int getY() const { return y; }
@@ -27,6 +26,7 @@ public:
 private:
     int x;
     int y;
+    int newY;
     int width;
     int height;
     int speed;

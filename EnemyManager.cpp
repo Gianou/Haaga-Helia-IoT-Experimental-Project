@@ -2,22 +2,18 @@
 
 EnemyManager::EnemyManager()
 {
-    int speed = 10;
-    Enemy *enemy1 = new Enemy(158, 40, 12, 12, speed); // 0, 20, 40, 60, 80, 100
+    int speed = 8;
+    Enemy *enemy1 = new Enemy(158, 40, 12, 12, speed);
     Enemy *enemy2 = new Enemy(158, 80, 12, 12, speed);
     Enemy *enemy3 = new Enemy(158, 0, 12, 12, speed);
     Enemy *enemy4 = new Enemy(158, 100, 12, 12, speed);
-    Enemy *enemy5 = new Enemy(158, 20, 12, 12, speed);
-    Enemy *enemy6 = new Enemy(158, 60, 12, 12, speed);
 
     addGameObject(enemy1);
     addGameObject(enemy2);
     addGameObject(enemy3);
     addGameObject(enemy4);
-    // addGameObject(enemy5);
-    // addGameObject(enemy6);
 
-    numberOfEnemies = 1;
+    numberOfEnemies = 0;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -38,9 +34,17 @@ void EnemyManager::update()
 {
 
     ScoreManager &scoreManager = ScoreManager::getInstance();
-    if (scoreManager.getScore() % (74 + 12) == 0 && numberOfEnemies < 4)
+    if (scoreManager.getScore() % (80) == 0)
     {
-        numberOfEnemies++;
+        if (numberOfEnemies < 3)
+        {
+            numberOfEnemies++;
+        }
+        else
+        {
+            numberOfEnemies = 0;
+            reset();
+        }
     }
     for (int i = 0; i < numberOfEnemies; i++)
 
