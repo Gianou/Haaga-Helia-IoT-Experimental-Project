@@ -130,7 +130,8 @@ void Player::draw(TFT_eSprite &sprite)
     }
     else
     {
-        sprite.fillRect(x, y, width, height, TFT_RED);
+        // sprite.fillRect(x, y, width, height, TFT_RED);
+        sprite.pushImage(x, y, 17, 29, Long_sprite);
     }
 
     // Draw player's life
