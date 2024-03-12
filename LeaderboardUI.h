@@ -17,6 +17,7 @@ public:
 
 private:
     std::array<String, 10> _lines;
+    bool _isConnected;
 };
 
 #endif

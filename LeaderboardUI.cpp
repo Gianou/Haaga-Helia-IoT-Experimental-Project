@@ -9,6 +9,7 @@ LeaderboardUI::LeaderboardUI()
 void LeaderboardUI::update()
 {
     ConnexionManager &connexionManager = ConnexionManager::getInstance();
+    _isConnected = connexionManager.isConnected();
     for (int i = 0; i < 10; i++)
     {   
         String line = "";
@@ -32,11 +33,19 @@ void LeaderboardUI::draw(TFT_eSprite &sprite)
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(1);
     sprite.drawString("LeadeBoard", 22, 5);
-    for (int i = 0; i < 10; i++)
+    if (!_isConnected)
     {
-        sprite.setTextColor(TFT_WHITE);
+        sprite.setTextColor(TFT_RED);
         sprite.setTextSize(1);
-        sprite.drawString(_lines[i], 22, 20 + i * 10);
+        sprite.drawString("No Internet connection", 22, 20);
+        return;
+    } else {
+        for (int i = 0; i < 10; i++)
+        {
+            sprite.setTextColor(TFT_WHITE);
+            sprite.setTextSize(1);
+            sprite.drawString(_lines[i], 22, 20 + i * 10);
+        }
     }
     
     
