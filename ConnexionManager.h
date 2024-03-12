@@ -13,7 +13,8 @@ public:
   void begin();
   bool isConnected();
   bool sendData(String pseudo, int count);
-  String receiveData();
+  String receiveDataUserName(String index);
+  int receiveDataScore(String index);
 
 private:
   ConnexionManager();

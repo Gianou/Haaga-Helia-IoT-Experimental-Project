@@ -55,7 +55,7 @@ void setup()
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
-  bool sendData = connexionManager.sendData("Pseudo", 0);
+  //bool sendData = connexionManager.sendData("IS2", 7);
 
   InputManager &inputManager = InputManager::getInstance();
   inputManager.init(yellowButton, blueButton, joystick);

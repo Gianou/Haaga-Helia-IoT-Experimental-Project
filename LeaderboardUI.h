@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include "SceneManager.h"
 #include "InputManager.h"
+#include "ConnexionManager.h"
+#include <array>
 
 class LeaderboardUI : public GameObject
 {
@@ -14,6 +16,7 @@ public:
     void draw(TFT_eSprite &sprite);
 
 private:
+    std::array<String, 10> _lines;
 };
 
 #endif
