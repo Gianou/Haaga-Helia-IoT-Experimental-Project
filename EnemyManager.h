@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "Enemy.h"
+#include "ScoreManager.h"
 #include <vector>
 
 class EnemyManager : public GameObject
@@ -19,6 +20,7 @@ public:
 private:
     EnemyManager(); // Private constructor to prevent external instantiation
     std::vector<Enemy *> enemies;
+    int numberOfEnemies;
 };
 
 #endif

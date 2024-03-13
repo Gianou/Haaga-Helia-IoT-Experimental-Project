@@ -150,5 +150,7 @@ void GameOverUI::saveScoreToDB()
     // Get connexion manager singleton
     ConnexionManager &connexionManager = ConnexionManager::getInstance();
     connexionManager.sendData(username, score);
-    // Save data
+    // Go to leaderboard
+    SceneManager &sceneManager = SceneManager::getInstance();
+    sceneManager.setIndex(3);
 }

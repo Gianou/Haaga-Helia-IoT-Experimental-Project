@@ -16,6 +16,14 @@
 #include "LeaderboardUI.h"
 #include "EnemyManager.h"
 #include "ConnexionManager.h"
+#include "Sonar.h"
+
+// SONAR
+
+#define sonarTrigPin 12  // define TrigPin
+#define sonarEchoPin 14  // define EchoPin.
+#define MAX_DISTANCE 200 // Maximum sensor distance is rated at 400-500cm.
+Sonar sonar(sonarTrigPin, sonarEchoPin, MAX_DISTANCE);
 
 // SCREEN
 Screen screen = Screen();
@@ -31,8 +39,7 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
-Player player = Player(50, 50, 20, 20);
-// EnemyManager enemyManager = EnemyManager();
+Player player = Player(20, 50, 20, 20);
 GameEngine gameEngine = GameEngine();
 CollisionManager collisionManager = CollisionManager(player);
 Debugger debugger = Debugger(4, 4, collisionManager);
@@ -43,22 +50,21 @@ Scene LeaderboardScene = Scene();
 StartUI startUI = StartUI();
 GameOverUI gameOverUI = GameOverUI();
 LeaderboardUI leaderboardUI = LeaderboardUI();
-// ConnexionManager connexionManager = ConnexionManager();
-int i = 0;
 
 void setup()
 {
   Serial.begin(9600);
 
-  ConnexionManager &connexionManager = ConnexionManager::getInstance();
-  connexionManager.begin();
   screen.begin();
   yellowButton.begin();
   blueButton.begin();
-  //bool sendData = connexionManager.sendData("IS2", 7);
+  sonar.begin();
+
+  ConnexionManager &connexionManager = ConnexionManager::getInstance();
+  connexionManager.begin(screen.getTFT());
 
   InputManager &inputManager = InputManager::getInstance();
-  inputManager.init(yellowButton, blueButton, joystick);
+  inputManager.init(yellowButton, blueButton, joystick, sonar);
   EnemyManager &enemyManager = EnemyManager::getInstance();
 
   SceneManager &sceneManager = SceneManager::getInstance();
@@ -92,6 +98,8 @@ void loop()
 {
   gameEngine.update();
   gameEngine.draw(screen.getSprite());
+  float distance = sonar.getDistance();
+  Serial.println(distance);
 
   delay(33);
 }
