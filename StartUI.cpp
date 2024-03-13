@@ -29,33 +29,13 @@ void StartUI::draw(TFT_eSprite &sprite)
     sprite.setTextSize(2);
     sprite.drawString("Welcome captain!", 10, 10);
 
-    for (int i = 0; i < 2; ++i)
-    {
-        if (i == currentCharYIndex)
-        {
-            sprite.setTextColor(TFT_GREENYELLOW);
-            sprite.setTextSize(1);
-            sprite.drawString(stringArray[i], 20, 30 + i * 30);
-            sprite.setTextSize(1);
-            sprite.setTextColor(TFT_WHITE);
-            // Draw pointer (>)
-            sprite.drawString(">", 10, 30 + i * 30);
-        }
-        else
-        {
-            sprite.setTextColor(TFT_WHITE);
-            sprite.setTextSize(1);
-            sprite.drawString(stringArray[i], 20, 30 + i * 30);
-        }
-    }
+    sprite.setTextColor(TFT_WHITE);
+    sprite.setTextSize(1);
+    sprite.drawString(currentCharYIndex == 0 ? ">" + stringArray[0] : stringArray[0], 20, 30);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString(stringArray[0], 20, 30);
-
-    sprite.setTextColor(TFT_WHITE);
-    sprite.setTextSize(1);
-    sprite.drawString(stringArray[1], 20, 60);
+    sprite.drawString(currentCharYIndex == 1 ? ">" + stringArray[1] : stringArray[1], 20, 60);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
