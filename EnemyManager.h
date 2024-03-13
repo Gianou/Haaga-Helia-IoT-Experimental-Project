@@ -21,6 +21,10 @@ private:
     EnemyManager(); // Private constructor to prevent external instantiation
     std::vector<Enemy *> enemies;
     int numberOfEnemies;
+    bool isEnemyOnHold;
+    bool isTutoPhase;
+    int tutoPhaseCounter = 0;
+    int tutoDuration = 200;
 };
 
 #endif

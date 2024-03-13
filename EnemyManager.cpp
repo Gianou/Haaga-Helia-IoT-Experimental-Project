@@ -1,5 +1,10 @@
 #include "EnemyManager.h"
 
+/*
+1. add isTutoPhase
+2. add tutoCounter
+3. draw tuto thing -> array of new class?
+*/
 EnemyManager::EnemyManager()
 {
     int speed = 8;
@@ -16,6 +21,8 @@ EnemyManager::EnemyManager()
     // addGameObject(enemy6);
 
     numberOfEnemies = 1;
+    isEnemyOnHold = false;
+    isTutoPhase = false;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -26,6 +33,14 @@ EnemyManager &EnemyManager::getInstance()
 
 void EnemyManager::draw(TFT_eSprite &sprite)
 {
+
+    if (isTutoPhase)
+    {
+        // drawCurrentTuto();
+        sprite.drawString("Do a barrel roll", 80, 40);
+        return;
+    }
+
     for (int i = 0; i < numberOfEnemies; i++)
     {
         enemies[i]->draw(sprite);
@@ -35,15 +50,53 @@ void EnemyManager::draw(TFT_eSprite &sprite)
 void EnemyManager::update()
 {
 
-    ScoreManager &scoreManager = ScoreManager::getInstance();
-    if (scoreManager.getScore() % 80 == 0 && numberOfEnemies < 3)
+    if (isTutoPhase)
     {
-        numberOfEnemies++;
+        tutoPhaseCounter++;
+        if (tutoPhaseCounter >= tutoDuration)
+        {
+            reset();
+            numberOfEnemies = 1;
+            isTutoPhase = false;
+            isEnemyOnHold = false;
+            tutoPhaseCounter = 0;
+            // Say that we need to change the control
+        }
+        return;
     }
+
+    ScoreManager &scoreManager = ScoreManager::getInstance();
+    if (scoreManager.getScore() % 80 == 0)
+    {
+        if (numberOfEnemies < 3)
+        {
+            numberOfEnemies++;
+        }
+        else
+        {
+            isEnemyOnHold = true;
+        }
+    }
+
     for (int i = 0; i < numberOfEnemies; i++)
 
     {
-        enemies[i]->update();
+        if (!isEnemyOnHold)
+        {
+            enemies[i]->update();
+        }
+        else
+        {
+            if ((enemies[i]->getX() + enemies[i]->getWidth() > 8)) // needs to be fine tuned
+            {
+                enemies[i]->update();
+                if (i = 3)
+                {
+                    // flag last enemy has reached end of screen
+                    isTutoPhase = true;
+                }
+            }
+        }
     }
 }
 
