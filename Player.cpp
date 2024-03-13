@@ -19,16 +19,9 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
 {
 }
 
-void Player::update()
+void Player::moveShipWithSonar()
 {
-    // Get joystick values
-    int joystickX = inputManager.getJoystickXValue();
-    int joystickY = inputManager.getJoystickYValue();
-    boolean yell = inputManager.getYellowButtonValue();
-    boolean blue = inputManager.getBlueButtonValue();
     float distance = inputManager.getSonarDistance();
-
-    // Controlled by sonar
     int max = 16; // 8 is too hard to control, the smaller the bigger the jitter, 18 is good but very far
 
     // Prevents jittering from incoherent inputs
@@ -51,21 +44,28 @@ void Player::update()
     {
         y = newY;
     }
-    /*
-        if (joystickY >= 2200)
-        {
-            y -= speed;
-        }
-        if (joystickY <= 1900)
-        {
-            y += speed;
-        }
-        */
+}
 
-    /*
-        int mappedJoystickY = map(joystickY, 2200, 1800, -100, 100);
-        y += speed * mappedJoystickY / 200;
-    */
+void Player::moveShipWithJoystick()
+{
+    int joystickY = inputManager.getJoystickYValue();
+    int mappedJoystickY = map(joystickY, 2200, 1800, -100, 100);
+    y += speed * mappedJoystickY / 200;
+}
+
+void Player::update()
+{
+    // Get joystick values
+    int joystickX = inputManager.getJoystickXValue();
+    int joystickY = inputManager.getJoystickYValue();
+    boolean yell = inputManager.getYellowButtonValue();
+    boolean blue = inputManager.getBlueButtonValue();
+    EnemyManager &enemyManager = EnemyManager::getInstance();
+
+    enemyManager.getGamePhaseCounter() % 2 == 1
+        ? moveShipWithSonar()
+        : moveShipWithJoystick();
+
     if (y < 0)
     {
         y = 0;
@@ -74,35 +74,6 @@ void Player::update()
     {
         y = 128 - height;
     }
-
-    /*
-        // Map joystick values to a range of -100 to 100
-        int mappedJoystickX = map(joystickX, 2100, 1900, -100, 100);
-        int mappedJoystickY = map(joystickY, 2100, 1900, -100, 100);
-
-        // Handle player movement based on mapped joystick values
-        // x += speed * mappedJoystickX / 200;
-        y += speed * mappedJoystickY / 200;
-
-        // Add additional player update logic as needed
-
-        if (x < 0)
-        {
-            x = 0;
-        }
-        if (y < 0)
-        {
-            y = 0;
-        }
-        if (x > 160 - width)
-        {
-            x = 160 - width;
-        }
-        if (y > 128 - height)
-        {
-            y = 128 - height;
-        }
-        */
 
     score++;
     // Save score
@@ -114,7 +85,7 @@ void Player::update()
     {
         // Reset player and enemies
         EnemyManager &enemyManager = EnemyManager::getInstance();
-        enemyManager.reset();
+        enemyManager.resetForNewGame();
         reset(); // must happen after the score is saved in ScoreManager
         SceneManager &sceneManager = SceneManager::getInstance();
         sceneManager.setIndex(2);

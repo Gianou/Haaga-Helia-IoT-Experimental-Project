@@ -16,6 +16,8 @@ public:
     void removeGameObject(Enemy *gameObject);
     const std::vector<Enemy *> &getEnemies() const;
     void reset();
+    void resetForNewGame();
+    int getGamePhaseCounter() { return gamePhaseCounter; };
 
 private:
     EnemyManager(); // Private constructor to prevent external instantiation
@@ -24,7 +26,8 @@ private:
     bool isEnemyOnHold;
     bool isTutoPhase;
     int tutoPhaseCounter = 0;
-    int tutoDuration = 200;
+    int tutoDuration = 120;
+    int gamePhaseCounter = 0;
 };
 
 #endif

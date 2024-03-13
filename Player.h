@@ -43,6 +43,9 @@ private:
     int initialScore;
 
     InputManager &inputManager;
+
+    void moveShipWithSonar();
+    void moveShipWithJoystick();
 };
 
 #endif

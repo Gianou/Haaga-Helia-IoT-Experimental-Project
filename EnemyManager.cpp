@@ -36,6 +36,11 @@ void EnemyManager::draw(TFT_eSprite &sprite)
 
     if (isTutoPhase)
     {
+        /*
+        gamePhaseCounter % 2 == 1
+            ? drawJoystickTuto()
+            : drawSonarTuto();
+        */
         // drawCurrentTuto();
         sprite.drawString("Do a barrel roll", 80, 40);
         return;
@@ -60,6 +65,7 @@ void EnemyManager::update()
             isTutoPhase = false;
             isEnemyOnHold = false;
             tutoPhaseCounter = 0;
+
             // Say that we need to change the control
         }
         return;
@@ -94,6 +100,7 @@ void EnemyManager::update()
                 {
                     // flag last enemy has reached end of screen
                     isTutoPhase = true;
+                    gamePhaseCounter++; // Change controls before showing tuto
                 }
             }
         }
@@ -124,6 +131,11 @@ void EnemyManager::reset()
     {
         enemy->reset();
     }
+}
+void EnemyManager::resetForNewGame()
+{
+    gamePhaseCounter = 0;
+    reset();
 }
 
 const std::vector<Enemy *> &EnemyManager::getEnemies() const
