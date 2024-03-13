@@ -12,7 +12,8 @@ void Enemy::update()
 
 void Enemy::draw(TFT_eSprite &sprite)
 {
-    sprite.fillRect(x, y, width, height, TFT_BLUE);
+    sprite.pushImage(x - 3, y - 2, 20, 16, Meteorite);
+    // sprite.fillRect(x, y, width, height, TFT_BLUE);
 }
 
 void Enemy::reset()
@@ -49,7 +50,8 @@ void Enemy::updateRightToLeft()
 
     if (x + width < 0)
     {
-        x = 160;
+        x = 158;
         y = random(0, 128 - height);
+        // y = 60;
     }
 }

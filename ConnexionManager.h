@@ -5,12 +5,13 @@
 #include <WiFi.h>
 
 #include <Firebase_ESP_Client.h>
+#include <TFT_eSPI.h>
 #include "config.h"
 class ConnexionManager
 {
 public:
   static ConnexionManager &getInstance();
-  void begin();
+  void begin(TFT_eSPI tft);
   bool isConnected();
   bool sendData(String pseudo, int count);
   String receiveDataUserName(String index);

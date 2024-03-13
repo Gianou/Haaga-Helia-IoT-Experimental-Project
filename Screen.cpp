@@ -12,9 +12,19 @@ void Screen::begin()
     tft.drawRect(0, 0, tft.width(), tft.height(), TFT_GREEN);
 
     // Splash Screen
-    tft.setCursor(0, 4, 4);
+    tft.setTextSize(2);
+    tft.setCursor(36, 10);
+    tft.setTextColor(TFT_YELLOW);
+    tft.println("Welcome");
+    tft.setCursor(36, 30);
+    tft.println("Captain ");
+    // WIFI info
+    tft.setTextSize(1);
+    tft.setCursor(10, 60);
     tft.setTextColor(TFT_WHITE);
-    tft.println("Hello World!");
+    tft.println("Connecting to Wifi");
+    tft.setCursor(10, 70);
+    tft.println("ssid : " + String(ssid));
 
     /*
     When refactoring from drawing each element on screen to drawing each element to a Sprite that is then rendered when it is ready,

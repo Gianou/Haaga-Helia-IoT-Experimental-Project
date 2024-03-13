@@ -10,11 +10,12 @@ InputManager &InputManager::getInstance()
     return instance;
 }
 
-void InputManager::init(Button &yellow, Button &blue, Joystick &joystick)
+void InputManager::init(Button &yellow, Button &blue, Joystick &joystick, Sonar &sonar)
 {
     this->yellow = &yellow;
     this->blue = &blue;
     this->joystick = &joystick;
+    this->sonar = &sonar;
 }
 
 void InputManager::update()
@@ -22,6 +23,7 @@ void InputManager::update()
     blue->update();
     yellow->update();
     joystick->update();
+    sonar->update();
 }
 void InputManager::draw(TFT_eSprite &sprite)
 {
@@ -45,4 +47,9 @@ int InputManager::getJoystickXValue()
 int InputManager::getJoystickYValue()
 {
     return joystick->getYValue();
+}
+
+float InputManager::getSonarDistance()
+{
+    return sonar->getDistance();
 }
