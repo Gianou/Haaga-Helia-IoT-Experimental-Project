@@ -11,9 +11,7 @@ StartUI::StartUI()
 
 void StartUI::update()
 {
-    /*
-    Check for inputs and set index in SceneManager
-    */
+    handleInput();
     InputManager &inputManager = InputManager::getInstance();
     SceneManager &sceneManager = SceneManager::getInstance();
 
@@ -28,17 +26,15 @@ void StartUI::draw(TFT_eSprite &sprite)
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(2);
     sprite.drawString("Welcome", 10, 10);
-    sprite.drawString("captain!", 10, 11);
+    sprite.drawString("captain!", 10, 15);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    // sprite.drawString(currentCharYIndex == 0 ? "> " + stringArray[0] : stringArray[0], 20, 30);
-    sprite.drawString("Move Y axis:" + String(moveYAxis), 20, 30);
+    sprite.drawString(currentCharYIndex == 0 ? "> " + stringArray[0] : stringArray[0], 20, 30);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    // sprite.drawString(currentCharYIndex == 1 ? "> " + stringArray[1] : stringArray[1], 20, 60);
-    sprite.drawString(String(currentCharYIndex), 20, 60);
+    sprite.drawString(currentCharYIndex == 1 ? "> " + stringArray[1] : stringArray[1], 20, 60);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
