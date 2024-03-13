@@ -14,6 +14,10 @@ public:
     void draw(TFT_eSprite &sprite);
 
 private:
+    bool moveYAxis;
+    int currentCharYIndex;
+    String stringArray[2];
+    void handleInput();
 };
 
 #endif
