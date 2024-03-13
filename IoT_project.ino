@@ -84,7 +84,7 @@ void setup()
   gameEngine.addGameObject(&sceneManager);
   gameEngine.addGameObject(&screen);
 
-  sceneManager.setIndex(3);
+  sceneManager.setIndex(0);
   delay(2000);
 }
 
