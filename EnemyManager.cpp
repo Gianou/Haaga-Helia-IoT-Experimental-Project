@@ -1,5 +1,10 @@
 #include "EnemyManager.h"
 
+/*
+1. add isTutoPhase
+2. add tutoCounter
+3. draw tuto thing -> array of new class?
+*/
 EnemyManager::EnemyManager()
 {
     int speed = 8;
@@ -7,6 +12,8 @@ EnemyManager::EnemyManager()
     Enemy *enemy2 = new Enemy(158, 80, 12, 12, speed);
     Enemy *enemy3 = new Enemy(158, 0, 12, 12, speed);
     Enemy *enemy4 = new Enemy(158, 100, 12, 12, speed);
+
+    tutoAnimator = new TutoAnimation();
 
     addGameObject(enemy1);
     addGameObject(enemy2);
@@ -16,6 +23,8 @@ EnemyManager::EnemyManager()
     // addGameObject(enemy6);
 
     numberOfEnemies = 1;
+    isEnemyOnHold = false;
+    isTutoPhase = false;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -26,6 +35,20 @@ EnemyManager &EnemyManager::getInstance()
 
 void EnemyManager::draw(TFT_eSprite &sprite)
 {
+
+    if (isTutoPhase)
+    {
+        /*
+        gamePhaseCounter % 2 == 1
+            ? drawJoystickTuto()
+            : drawSonarTuto();
+        */
+        // drawCurrentTuto();
+        // sprite.drawString("Do a barrel roll", 80, 40);
+        tutoAnimator->draw(sprite);
+        return;
+    }
+
     for (int i = 0; i < numberOfEnemies; i++)
     {
         enemies[i]->draw(sprite);
@@ -35,15 +58,58 @@ void EnemyManager::draw(TFT_eSprite &sprite)
 void EnemyManager::update()
 {
 
-    ScoreManager &scoreManager = ScoreManager::getInstance();
-    if (scoreManager.getScore() % 80 == 0 && numberOfEnemies < 3)
+    if (isTutoPhase)
     {
-        numberOfEnemies++;
+        tutoPhaseCounter++;
+
+        tutoAnimator->update(); // Show tuto animation only when in TutoPhase
+        if (tutoPhaseCounter >= tutoDuration)
+        {
+            reset();
+            numberOfEnemies = 1;
+            isTutoPhase = false;
+            isEnemyOnHold = false;
+            tutoPhaseCounter = 0;
+
+            // Say that we need to change the control
+        }
+        return;
     }
+
+    ScoreManager &scoreManager = ScoreManager::getInstance();
+    if (scoreManager.getScore() % 80 == 0)
+    {
+        if (numberOfEnemies < 3)
+        {
+            numberOfEnemies++;
+        }
+        else
+        {
+            isEnemyOnHold = true;
+        }
+    }
+
     for (int i = 0; i < numberOfEnemies; i++)
 
     {
-        enemies[i]->update();
+        if (!isEnemyOnHold)
+        {
+            enemies[i]->update();
+        }
+        else
+        {
+            if ((enemies[i]->getX() + enemies[i]->getWidth() > 8)) // needs to be fine tuned
+            {
+                enemies[i]->update();
+                if (i = 3)
+                {
+                    // flag last enemy has reached end of screen
+                    isTutoPhase = true;
+                    gamePhaseCounter++; // Change controls before showing tuto
+                    tutoAnimator->setGamePhaseCounter(gamePhaseCounter);
+                }
+            }
+        }
     }
 }
 
@@ -71,6 +137,11 @@ void EnemyManager::reset()
     {
         enemy->reset();
     }
+}
+void EnemyManager::resetForNewGame()
+{
+    gamePhaseCounter = 0;
+    reset();
 }
 
 const std::vector<Enemy *> &EnemyManager::getEnemies() const
