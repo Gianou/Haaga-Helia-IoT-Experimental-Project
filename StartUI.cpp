@@ -15,7 +15,7 @@ void StartUI::update()
     InputManager &inputManager = InputManager::getInstance();
     SceneManager &sceneManager = SceneManager::getInstance();
 
-    if (!inputManager.getBlueButtonValue()&& currentCharYIndex == 0)
+    if (!inputManager.getBlueButtonValue() && currentCharYIndex == 0)
     {
         sceneManager.setIndex(1);
     }
@@ -23,7 +23,6 @@ void StartUI::update()
     {
         sceneManager.setIndex(3);
     }
-
 }
 
 void StartUI::draw(TFT_eSprite &sprite)
@@ -41,14 +40,16 @@ void StartUI::draw(TFT_eSprite &sprite)
     {
         sprite.drawString("-> Start Game", 35, 60);
         sprite.drawString("Leaderboard", 53, 80);
-    } else {
+    }
+    else
+    {
         sprite.drawString("Start Game", 53, 60);
         sprite.drawString("-> Leaderboard", 35, 80);
     }
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("press blue to start", 22, 110);
+    sprite.drawString("Press BLUE to select", 18, 110);
 }
 
 void StartUI::handleInput()

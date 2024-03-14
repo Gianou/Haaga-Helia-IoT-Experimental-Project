@@ -123,7 +123,7 @@ void Player::draw(TFT_eSprite &sprite)
         sprite.fillCircle(10 + i * 15, 10, 5, TFT_RED);
     }
     // Draw score
-    sprite.drawString(String(score), 138, 10);
+    sprite.drawString(String(score), 128, 10);
 }
 
 void Player::takeHit()

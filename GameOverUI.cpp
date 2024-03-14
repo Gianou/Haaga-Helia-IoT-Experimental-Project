@@ -67,8 +67,7 @@ void GameOverUI::draw(TFT_eSprite &sprite)
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("PRESS BLUE TO SAVE", 10, 100);
-    sprite.drawString("PRESS YELLOW TO RESTART", 10, 110);
+    sprite.drawString("Press BLUE to save", 10, 105);
 }
 
 void GameOverUI::handleInput()
@@ -130,11 +129,6 @@ void GameOverUI::handleInput()
     if (!inputManager.getBlueButtonValue())
     {
         saveScoreToDB();
-    }
-    if (!inputManager.getYellowButtonValue())
-    {
-        SceneManager &sceneManager = SceneManager::getInstance();
-        sceneManager.setIndex(0);
     }
 }
 

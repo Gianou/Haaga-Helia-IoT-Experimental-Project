@@ -98,8 +98,6 @@ void loop()
 {
   gameEngine.update();
   gameEngine.draw(screen.getSprite());
-  float distance = sonar.getDistance();
-  Serial.println(distance);
 
   delay(33);
 }
