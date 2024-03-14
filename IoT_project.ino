@@ -17,9 +17,12 @@
 #include "EnemyManager.h"
 #include "ConnexionManager.h"
 #include "Sonar.h"
+#include "Gyroscope.h"
+
+// GYROSCOPE
+Gyroscope gyroscope = Gyroscope();
 
 // SONAR
-
 #define sonarTrigPin 12  // define TrigPin
 #define sonarEchoPin 14  // define EchoPin.
 #define MAX_DISTANCE 200 // Maximum sensor distance is rated at 400-500cm.
@@ -35,7 +38,7 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 
 // BUTTONS
 #define BUTTON_PIN_YELLOW 19 // Yellow button
-#define BUTTON_PIN_BLUE 21   // Blue button
+#define BUTTON_PIN_BLUE 21   // Blue button TODO change for gyro
 
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
@@ -64,7 +67,7 @@ void setup()
   connexionManager.begin(screen.getTFT());
 
   InputManager &inputManager = InputManager::getInstance();
-  inputManager.init(yellowButton, blueButton, joystick, sonar);
+  inputManager.init(yellowButton, blueButton, joystick, sonar, gyroscope);
   EnemyManager &enemyManager = EnemyManager::getInstance();
 
   SceneManager &sceneManager = SceneManager::getInstance();

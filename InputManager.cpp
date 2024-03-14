@@ -10,12 +10,18 @@ InputManager &InputManager::getInstance()
     return instance;
 }
 
-void InputManager::init(Button &yellow, Button &blue, Joystick &joystick, Sonar &sonar)
+void InputManager::init(
+    Button &yellow,
+    Button &blue,
+    Joystick &joystick,
+    Sonar &sonar,
+    Gyroscope &gyroscope)
 {
     this->yellow = &yellow;
     this->blue = &blue;
     this->joystick = &joystick;
     this->sonar = &sonar;
+    this->gyroscope = &gyroscope;
 }
 
 void InputManager::update()
@@ -24,6 +30,7 @@ void InputManager::update()
     yellow->update();
     joystick->update();
     sonar->update();
+    gyroscope->update();
 }
 void InputManager::draw(TFT_eSprite &sprite)
 {
@@ -52,4 +59,19 @@ int InputManager::getJoystickYValue()
 float InputManager::getSonarDistance()
 {
     return sonar->getDistance();
+}
+
+float InputManager::getGyroscopeXValue()
+{
+    return gyroscope->getAXValue();
+}
+
+float InputManager::getGyroscopeYValue()
+{
+    return gyroscope->getAYValue();
+}
+
+float InputManager::getGyroscopeZValue()
+{
+    return gyroscope->getAZValue();
 }

@@ -20,7 +20,12 @@ void Debugger::draw(TFT_eSprite &sprite)
 
         // COLLISIONS
         sprite.drawString("Cols : " + String(collisionManager.getIsColliding()), 80, 4);
-    }
+
+        // GYROSCOPE ACCELERATION
+        sprite.drawString("Gyro X : " + String(inputManager.getGyroscopeAXValue()), x, y + 5 * ln);
+        sprite.drawString("Gyro Y : " + String(inputManager.getGyroscopeAYValue()), x, y + 6 * ln);
+        sprite.drawString("Gyro Z : " + String(inputManager.getGyroscopeAZValue()), x, y + 7 * ln);
+        }
 }
 
 void Debugger::update()
