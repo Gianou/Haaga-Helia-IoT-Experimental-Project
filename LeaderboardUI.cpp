@@ -12,8 +12,14 @@ LeaderboardUI::LeaderboardUI()
 
 void LeaderboardUI::update()
 {
+    InputManager &inputManager = InputManager::getInstance();
+    SceneManager &sceneManager = SceneManager::getInstance();
     ConnexionManager &connexionManager = ConnexionManager::getInstance();
     _isConnected = connexionManager.isConnected();
+    if (!inputManager.getYellowButtonValue())
+    {
+        sceneManager.setIndex(0);
+    }
     for (int i = 0; i < 10; i++)
     {   
         String line = "";
@@ -29,7 +35,14 @@ void LeaderboardUI::update()
         Serial.print("  ");
         Serial.println(score);
         _lines[i] = line;
+
+        if (!inputManager.getYellowButtonValue())
+    {
+        sceneManager.setIndex(0);
     }
+    }
+
+    
 }
 
 void LeaderboardUI::draw(TFT_eSprite &sprite)
@@ -72,10 +85,11 @@ void LeaderboardUI::draw(TFT_eSprite &sprite)
                 sprite.drawString(_lines[i], 88, 30 + (i-5) * 10);
             }
         }
-    }
 
-    sprite.setTextSize(1);
-    sprite.drawLine(75, 30, 75, 76, TFT_WHITE);
+        sprite.setTextColor(TFT_WHITE);
+        sprite.setTextSize(1);
+        sprite.drawString("press yellow to go back", 22, 110);
+    }
     
     
 

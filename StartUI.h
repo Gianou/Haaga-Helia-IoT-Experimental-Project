@@ -12,8 +12,12 @@ public:
     StartUI();
     void update();
     void draw(TFT_eSprite &sprite);
+   
 
 private:
+    bool moveYAxis;
+    int currentCharYIndex;
+    void handleInput();
 };
 
 #endif
