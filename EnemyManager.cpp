@@ -13,6 +13,8 @@ EnemyManager::EnemyManager()
     Enemy *enemy3 = new Enemy(158, 0, 12, 12, speed);
     Enemy *enemy4 = new Enemy(158, 100, 12, 12, speed);
 
+    tutoAnimator = new TutoAnimation();
+
     addGameObject(enemy1);
     addGameObject(enemy2);
     addGameObject(enemy3);
@@ -42,7 +44,8 @@ void EnemyManager::draw(TFT_eSprite &sprite)
             : drawSonarTuto();
         */
         // drawCurrentTuto();
-        sprite.drawString("Do a barrel roll", 80, 40);
+        // sprite.drawString("Do a barrel roll", 80, 40);
+        tutoAnimator->draw(sprite);
         return;
     }
 
@@ -58,6 +61,8 @@ void EnemyManager::update()
     if (isTutoPhase)
     {
         tutoPhaseCounter++;
+
+        tutoAnimator->update(); // Show tuto animation only when in TutoPhase
         if (tutoPhaseCounter >= tutoDuration)
         {
             reset();
@@ -101,6 +106,7 @@ void EnemyManager::update()
                     // flag last enemy has reached end of screen
                     isTutoPhase = true;
                     gamePhaseCounter++; // Change controls before showing tuto
+                    tutoAnimator->setGamePhaseCounter(gamePhaseCounter);
                 }
             }
         }

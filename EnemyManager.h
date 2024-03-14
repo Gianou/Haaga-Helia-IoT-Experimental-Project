@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Enemy.h"
 #include "ScoreManager.h"
+#include "TutoAnimation.h"
 #include <vector>
 
 class EnemyManager : public GameObject
@@ -28,6 +29,7 @@ private:
     int tutoPhaseCounter = 0;
     int tutoDuration = 120;
     int gamePhaseCounter = 0;
+    TutoAnimation *tutoAnimator;
 };
 
 #endif
