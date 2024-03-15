@@ -14,31 +14,38 @@ void LeaderboardUI::update()
     SceneManager &sceneManager = SceneManager::getInstance();
     ConnexionManager &connexionManager = ConnexionManager::getInstance();
     _isConnected = connexionManager.isConnected();
+
     if (!inputManager.getYellowButtonValue())
     {
         sceneManager.setIndex(0);
     }
-    for (int i = 0; i < 10; i++)
+    // If first frame of opening the UI
+    if (sceneManager.getIsFirstFrameOfLeaderboard())
     {
-        String line = "";
-        String pseudo = connexionManager.receiveDataUserName(String(i + 1));
-        int score = connexionManager.receiveDataScore(String(i + 1));
-        line += i + 1;
-        line += ":";
-        line += pseudo;
-        line += " ";
-        line += score;
-        Serial.print(": ");
-        Serial.print(pseudo);
-        Serial.print("  ");
-        Serial.println(score);
-        _lines[i] = line;
-
-        if (!inputManager.getYellowButtonValue())
+        for (int i = 0; i < 10; i++)
         {
-            sceneManager.setIndex(0);
+            String line = "";
+            String pseudo = connexionManager.receiveDataUserName(String(i + 1));
+            int score = connexionManager.receiveDataScore(String(i + 1));
+            line += i + 1;
+            line += ":";
+            line += pseudo;
+            line += " ";
+            line += score;
+            Serial.print(": ");
+            Serial.print(pseudo);
+            Serial.print("  ");
+            Serial.println(score);
+            _lines[i] = line;
+
+            if (!inputManager.getYellowButtonValue())
+            {
+                sceneManager.setIndex(0);
+            }
         }
     }
+
+    sceneManager.setIsFirstFrameOfLeaderboard(false);
 }
 
 void LeaderboardUI::draw(TFT_eSprite &sprite)

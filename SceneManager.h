@@ -14,10 +14,14 @@ public:
     void addGameObject(GameObject *gameObject);
     void removeGameObject(GameObject *gameObject);
     void setIndex(int index);
+    bool getIsFirstFrameOfLeaderboard();
+    void setIsFirstFrameOfLeaderboard(bool newIsFirstFrameOfLeaderboard);
 
 private:
-    std::vector<GameObject *> gameObjects;
+    std::vector<GameObject *>
+        gameObjects;
     int index;
+    bool isFirstFrameOfLeaderboard = true;
 
     SceneManager();                                // Private constructor to enforce Singleton pattern
     SceneManager(const SceneManager &) = delete;   // Disallow copy constructor

@@ -12,7 +12,19 @@ SceneManager &SceneManager::getInstance()
 
 void SceneManager::setIndex(int index)
 {
+    // reset the boolean used by the LeaderboardUI to not get Firebase data on every frame
+    isFirstFrameOfLeaderboard = true;
     this->index = index;
+}
+
+bool SceneManager::getIsFirstFrameOfLeaderboard()
+{
+    return isFirstFrameOfLeaderboard;
+}
+
+void SceneManager::setIsFirstFrameOfLeaderboard(bool newIsFirstFrameOfLeaderboard)
+{
+    isFirstFrameOfLeaderboard = newIsFirstFrameOfLeaderboard;
 }
 
 void SceneManager::draw(TFT_eSprite &sprite)

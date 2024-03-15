@@ -4,6 +4,7 @@
 #include "Wire.h"
 #include "I2Cdev.h"
 #include "MPU6050.h"
+#include "Arduino.h"
 
 class Gyroscope
 {
@@ -18,9 +19,9 @@ public:
 
 private:
     MPU6050 accelgyro;
-    uint16_t xValue;
-    uint16_t yValue;
-    uint16_t zValue;
+    float xValue;
+    float yValue;
+    float zValue;
 };
 
 #endif

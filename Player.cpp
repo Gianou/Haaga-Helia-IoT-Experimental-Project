@@ -109,11 +109,10 @@ void Player::draw(TFT_eSprite &sprite)
     // Draw player
     if (invincible)
     {
-        sprite.fillRect(x, y, width, height, TFT_WHITE);
+        sprite.pushImage(x, y, 20, 20, Ship_hit);
     }
     else
     {
-        // sprite.fillRect(x, y, width, height, TFT_RED);
         sprite.pushImage(x, y, 20, 20, Ship);
     }
 

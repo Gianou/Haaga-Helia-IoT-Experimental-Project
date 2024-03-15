@@ -38,7 +38,7 @@ Joystick joystick = Joystick(VRX_PIN, VRY_PIN);
 
 // BUTTONS
 #define BUTTON_PIN_YELLOW 19 // Yellow button
-#define BUTTON_PIN_BLUE 21   // Blue button TODO change for gyro
+#define BUTTON_PIN_BLUE 17   // Blue button TODO change for gyro
 
 Button yellowButton = Button(BUTTON_PIN_YELLOW);
 Button blueButton = Button(BUTTON_PIN_BLUE);
@@ -62,6 +62,7 @@ void setup()
   yellowButton.begin();
   blueButton.begin();
   sonar.begin();
+  gyroscope.begin();
 
   ConnexionManager &connexionManager = ConnexionManager::getInstance();
   connexionManager.begin(screen.getTFT());

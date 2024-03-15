@@ -61,17 +61,17 @@ float InputManager::getSonarDistance()
     return sonar->getDistance();
 }
 
-float InputManager::getGyroscopeXValue()
+float InputManager::getGyroscopeAXValue()
 {
     return gyroscope->getAXValue();
 }
 
-float InputManager::getGyroscopeYValue()
+float InputManager::getGyroscopeAYValue()
 {
     return gyroscope->getAYValue();
 }
 
-float InputManager::getGyroscopeZValue()
+float InputManager::getGyroscopeAZValue()
 {
     return gyroscope->getAZValue();
 }
