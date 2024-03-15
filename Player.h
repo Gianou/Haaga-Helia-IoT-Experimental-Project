@@ -46,6 +46,7 @@ private:
     InputManager &inputManager;
 
     void moveShipWithSonar();
+    void moveShipWithGyroscope();
     void moveShipWithJoystick();
 };
 

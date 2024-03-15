@@ -1,10 +1,5 @@
 #include "EnemyManager.h"
 
-/*
-1. add isTutoPhase
-2. add tutoCounter
-3. draw tuto thing -> array of new class?
-*/
 EnemyManager::EnemyManager()
 {
     int speed = 8;
@@ -25,6 +20,7 @@ EnemyManager::EnemyManager()
     numberOfEnemies = 1;
     isEnemyOnHold = false;
     isTutoPhase = false;
+    currentControlMode = JOYSTICK_MODE;
 }
 
 EnemyManager &EnemyManager::getInstance()
@@ -105,12 +101,21 @@ void EnemyManager::update()
                 {
                     // flag last enemy has reached end of screen
                     isTutoPhase = true;
-                    gamePhaseCounter++; // Change controls before showing tuto
-                    tutoAnimator->setGamePhaseCounter(gamePhaseCounter);
+                    // gamePhaseCounter++; // Change controls before showing tuto
+                    switchControlMode();
+                    // tutoAnimator->setGamePhaseCounter(gamePhaseCounter);
+                    int currentControlModeValue = static_cast<int>(currentControlMode);
+                    tutoAnimator->setGamePhaseCounter(currentControlModeValue);
                 }
             }
         }
     }
+}
+
+void EnemyManager::switchControlMode()
+{
+    // Increment control mode cyclically
+    currentControlMode = static_cast<ShipControlMode>((currentControlMode + 1) % 3);
 }
 
 void EnemyManager::addGameObject(Enemy *gameObject)

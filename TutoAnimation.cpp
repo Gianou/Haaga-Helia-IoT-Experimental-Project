@@ -13,38 +13,67 @@ void TutoAnimation::update()
 
 void TutoAnimation::draw(TFT_eSprite &sprite)
 {
-    int x = 70;
-    int y = 60;
 
-    // if Sonar
-    if (gamePhaseCounter % 2 == 1)
+    if (gamePhaseCounter == 0)
     {
-        sprite.drawString("Pilot the Ship", 50, 40);
-        sprite.drawString("With the SONAR!", 50, 50);
-        counter % 12 <= 6
-            ? sprite.pushImage(x, y, 27, 38, Tuto_Sonar1)
-            : sprite.pushImage(x, y, 27, 38, Tuto_Sonar2);
+        drawJoystickTuto(sprite);
     }
-    else // Joystick
+    else if (gamePhaseCounter == 1)
     {
-        sprite.drawString("Pilot the Ship", 50, 40);
-        sprite.drawString("With the JOYSTICK!", 50, 50);
-        if (counter % 12 <= 4)
-        {
-            sprite.pushImage(x, y, 27, 38, Tuto_Joystick1);
-        }
-        else if (counter % 12 <= 8)
-        {
-            sprite.pushImage(x, y, 27, 38, Tuto_Joystick2);
-        }
-        else if (counter % 12 <= 11)
-        {
-            sprite.pushImage(x, y, 27, 38, Tuto_Joystick3);
-        }
+        drawSonarTuto(sprite);
+    }
+    else if (gamePhaseCounter == 2)
+    {
+        drawGyroTuto(sprite);
     }
 }
 
 void TutoAnimation ::setGamePhaseCounter(int newGamePhaseCounter)
 {
     gamePhaseCounter = newGamePhaseCounter;
+}
+
+void TutoAnimation ::drawJoystickTuto(TFT_eSprite &sprite)
+{
+    sprite.drawString("Pilot the Ship", 50, 40);
+    sprite.drawString("With the JOYSTICK!", 50, 50);
+    if (counter % 12 <= 4)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Joystick1);
+    }
+    else if (counter % 12 <= 8)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Joystick2);
+    }
+    else if (counter % 12 <= 11)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Joystick3);
+    }
+}
+
+void TutoAnimation ::drawSonarTuto(TFT_eSprite &sprite)
+{
+    sprite.drawString("Pilot the Ship", 50, 40);
+    sprite.drawString("With the SONAR!", 50, 50);
+    counter % 12 <= 6
+        ? sprite.pushImage(x, y, 27, 38, Tuto_Sonar1)
+        : sprite.pushImage(x, y, 27, 38, Tuto_Sonar2);
+}
+
+void TutoAnimation ::drawGyroTuto(TFT_eSprite &sprite)
+{
+    sprite.drawString("Pilot the Ship", 50, 40);
+    sprite.drawString("With the Gyro!", 50, 50);
+    if (counter % 12 <= 4)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Gyro1);
+    }
+    else if (counter % 12 <= 8)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Gyro2);
+    }
+    else if (counter % 12 <= 11)
+    {
+        sprite.pushImage(x, y, 27, 38, Tuto_Gyro3);
+    }
 }

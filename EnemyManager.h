@@ -7,6 +7,13 @@
 #include "TutoAnimation.h"
 #include <vector>
 
+enum ShipControlMode
+{
+    JOYSTICK_MODE,  // 0
+    SONAR_MODE,     // 1
+    GYROSCOPE_MODE, // 2
+};
+
 class EnemyManager : public GameObject
 {
 public:
@@ -19,6 +26,11 @@ public:
     void reset();
     void resetForNewGame();
     int getGamePhaseCounter() { return gamePhaseCounter; };
+    ShipControlMode getCurrentControlMode() const
+    {
+        return currentControlMode;
+    };
+    void switchControlMode();
 
 private:
     EnemyManager(); // Private constructor to prevent external instantiation
@@ -30,6 +42,7 @@ private:
     int tutoDuration = 120;
     int gamePhaseCounter = 0;
     TutoAnimation *tutoAnimator;
+    ShipControlMode currentControlMode;
 };
 
 #endif

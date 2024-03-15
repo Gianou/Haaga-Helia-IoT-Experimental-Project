@@ -7,7 +7,7 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
       width(playerWidth),
       height(playerHeight),
       speed(3),
-      life(3),
+      life(6),
       invincible(false),
       invincibleCounter(0),
       invincibleDuration(12),
@@ -46,6 +46,12 @@ void Player::moveShipWithSonar()
     }
 }
 
+void Player::moveShipWithGyroscope()
+{
+    float gyroY = inputManager.getGyroscopeAYValue();
+    gyroY += 0.30; // Make neutral position be slightly facing the player
+    y -= speed * gyroY * 8;
+}
 void Player::moveShipWithJoystick()
 {
     int joystickY = inputManager.getJoystickYValue();
@@ -56,15 +62,31 @@ void Player::moveShipWithJoystick()
 void Player::update()
 {
     // Get joystick values
+    /* TO DELETE?
     int joystickX = inputManager.getJoystickXValue();
     int joystickY = inputManager.getJoystickYValue();
     boolean yell = inputManager.getYellowButtonValue();
-    boolean blue = inputManager.getBlueButtonValue();
+    boolean blue = inputManager.getBlueButtonValue();*/
     EnemyManager &enemyManager = EnemyManager::getInstance();
 
+    if (enemyManager.getCurrentControlMode() == JOYSTICK_MODE)
+    {
+        moveShipWithJoystick();
+    }
+    else if (enemyManager.getCurrentControlMode() == SONAR_MODE)
+    {
+        moveShipWithSonar();
+    }
+    else if (enemyManager.getCurrentControlMode() == GYROSCOPE_MODE)
+    {
+        moveShipWithGyroscope();
+    }
+
+    /*
     enemyManager.getGamePhaseCounter() % 2 == 1
         ? moveShipWithSonar()
         : moveShipWithJoystick();
+    */
 
     if (y < 0)
     {

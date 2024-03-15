@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "CollisionManager.h"
 #include "GameObject.h"
+#include "SceneManager.h"
 
 class Debugger : public GameObject
 {

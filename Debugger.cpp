@@ -25,7 +25,11 @@ void Debugger::draw(TFT_eSprite &sprite)
         sprite.drawString("Gyro X : " + String(inputManager.getGyroscopeAXValue()), x, y + 5 * ln);
         sprite.drawString("Gyro Y : " + String(inputManager.getGyroscopeAYValue()), x, y + 6 * ln);
         sprite.drawString("Gyro Z : " + String(inputManager.getGyroscopeAZValue()), x, y + 7 * ln);
-        }
+
+        // LEADERBOARD
+        SceneManager &sceneManager = SceneManager::getInstance();
+        sprite.drawString("LB 1st frame : " + String(sceneManager.getIsFirstFrameOfLeaderboard()), x, y + 8 * ln);
+    }
 }
 
 void Debugger::update()
