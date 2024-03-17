@@ -4,6 +4,8 @@
 2. [Software Setup](#software-setup)
    - [Dependencies](#dependencies)
    - [Configuration](#configuration)
+      - [Network and Database Connexions](#network-and-database-connexions)
+      - [TFT_eSPI Configuration](#tft_espi-configuration)
 3. [Hardware Setup](#hardware-setup)
    - [Components Used](#components-used)
    - [Wiring Instructions](#wiring-instructions)
@@ -26,8 +28,9 @@ This project requires the following librairies:
 - [MPU6050 for ESP32](https://github.com/jrowberg/i2cdevlib/tree/master/ESP32_ESP-IDF/components/MPU6050)
 - [I2Cdev for ESP32](https://github.com/jrowberg/i2cdevlib/tree/master/ESP32_ESP-IDF/components/I2Cdev)
 
-
 ### Configuration
+
+#### Network and Database Connexions
 
 To configure the project, follow these steps:
 
@@ -47,12 +50,49 @@ const char *databaseUrl = "your_database_url";
 ```
 Note: if you are reproducing this project from scratch you will have to create a Realtime Database in a new Firebase project
 
+#### TFT_eSPI Configuration
+The [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) library requires some configuration in the User_Setup.h file. See the comments in the file for instructions.
+In our project, we used the a 160x128 ST7735 GREENTAB display, for reference here is the User_Setup.h file, without comments, that we use :
+```
+#define USER_SETUP_INFO "User_Setup"
+
+#define ST7735_DRIVER // Define additional parameters below for this display
+
+#define TFT_RGB_ORDER TFT_RGB // Colour order Red-Green-Blue
+#define TFT_WIDTH 128
+#define TFT_HEIGHT 160
+#define ST7735_GREENTAB
+
+#define TFT_CS 15 // Chip select control pin
+#define TFT_DC 2  // Data Command control pin
+#define TFT_RST 4 // Reset pin (could connect to RST pin)
+
+#define LOAD_GLCD  // Font 1. Original Adafruit 8 pixel font needs ~1820 bytes in FLASH
+#define LOAD_FONT2 // Font 2. Small 16 pixel high font, needs ~3534 bytes in FLASH, 96 characters
+#define LOAD_FONT4 // Font 4. Medium 26 pixel high font, needs ~5848 bytes in FLASH, 96 characters
+#define LOAD_FONT6 // Font 6. Large 48 pixel font, needs ~2666 bytes in FLASH, only characters 1234567890:-.apm
+#define LOAD_FONT7 // Font 7. 7 segment 48 pixel font, needs ~2438 bytes in FLASH, only characters 1234567890:-.
+#define LOAD_FONT8 // Font 8. Large 75 pixel font needs ~3256 bytes in FLASH, only characters 1234567890:-.
+#define LOAD_GFXFF // FreeFonts. Include access to the 48 Adafruit_GFX free fonts FF1 to FF48 and custom fonts
+
+#define SMOOTH_FONT
+
+#define SPI_FREQUENCY 27000000
+
+// Optional reduced SPI frequency for reading TFT
+#define SPI_READ_FREQUENCY 20000000
+
+// The XPT2046 requires a lower SPI clock rate of 2.5MHz so we define that here:
+#define SPI_TOUCH_FREQUENCY 2500000
+
+```
+
 ## Hardware Setup
 
 ### Components Used
 
 - ESP32 microcontroller 
-- TFT LCD display
+- TFT LCD display 160x128 ST7735
 - Buttons for input
 - Joystick
 - HC-SR04 
