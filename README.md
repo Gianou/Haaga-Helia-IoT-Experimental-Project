@@ -1,3 +1,15 @@
+# Table of Contents
+
+1. [HELLO CAPTAIN!](#hello-captain)
+2. [Software Setup](#software-setup)
+   - [Dependencies](#dependencies)
+   - [Configuration](#configuration)
+3. [Hardware Setup](#hardware-setup)
+   - [Components Used](#components-used)
+   - [Wiring Instructions](#wiring-instructions)
+4. [Running the Project](#running-the-project)
+5. [License](#license)
+
 # HELLO CAPTAIN!
 
 This project is an ESP32 based game and gaming devices that uses unconventional controls. This README will guide you through the setup process for both the software and hardware components of the project.  
