@@ -1,6 +1,8 @@
-# ESP32 Game Project
+# HELLO CAPTAIN!
 
-Welcome to the ESP32 Game Project! This project allows you to run a game on an ESP32 microcontroller. This README will guide you through the setup process for both the software and hardware components of the project.
+This project is an ESP32 based game and gaming devices that uses unconventional controls. This README will guide you through the setup process for both the software and hardware components of the project.  
+  
+The project was realised for the IoT Experimental Project course from  Haaga-Helia University of Applied Sciences.
 
 ## Software Setup
 
@@ -46,8 +48,42 @@ Note: if you are reproducing this project from scratch you will have to create a
 
 ### Wiring Instructions
 
-This is gonna take a while
+- TFT LCD Display:
+  - GND  -> GND
+  - VCC  -> 5V
+  - SCK  -> D18
+  - SDA  -> D23
+  - RES  -> D4
+  - RS   -> D2
+  - CS   -> D15
+  - LEDA -> 3V3
 
+- Buttons:
+  - Blue 1 -> P17
+  - Blue 2 -> GND
+  - Yellow 1 -> P19
+  - Yellow 2 -> GND
+
+- Joystick:
+  - GND  -> GND
+  - VCC  -> 5V
+  - VRx -> P34
+  - VRy -> P35
+  - SW -> Not Used
+
+- HC-SR04 Ultrasonic Sensor:
+  - VCC -> 3V3
+  - Trig -> P12
+  - Echo -> P14
+  - GND -> GND
+
+- GY-521 Accelerometer/Gyroscope Module:
+  - VCC -> 3V3
+  - GND -> GND
+  - SCL -> P22
+  - SDA -> P21
+  - Other pins are not used
+    
 ## Running the Project
 
 Once you have completed the software and hardware setup, you can upload the project to your ESP32 board using the Arduino IDE or your preferred IDE. After uploading, the game should start running on your ESP32 device.
