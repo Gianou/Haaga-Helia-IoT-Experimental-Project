@@ -4,14 +4,14 @@
 #include <TFT_eSPI.h>
 #include "GameObject.h"
 
-#include "Tuto_Sonar1.h"
-#include "Tuto_Sonar2.h"
-#include "Tuto_Joystick1.h"
-#include "Tuto_Joystick2.h"
-#include "Tuto_Joystick3.h"
-#include "Tuto_Gyro1.h"
-#include "Tuto_Gyro2.h"
-#include "Tuto_Gyro3.h"
+#include "../sprites/Tuto_Sonar1.h"
+#include "../sprites/Tuto_Sonar2.h"
+#include "../sprites/Tuto_Joystick1.h"
+#include "../sprites/Tuto_Joystick2.h"
+#include "../sprites/Tuto_Joystick3.h"
+#include "../sprites/Tuto_Gyro1.h"
+#include "../sprites/Tuto_Gyro2.h"
+#include "../sprites/Tuto_Gyro3.h"
 
 class TutoAnimation : public GameObject
 {

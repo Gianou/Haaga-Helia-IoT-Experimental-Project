@@ -7,7 +7,7 @@ Player::Player(int x, int y, int playerWidth, int playerHeight)
       width(playerWidth),
       height(playerHeight),
       speed(3),
-      life(6),
+      life(3),
       invincible(false),
       invincibleCounter(0),
       invincibleDuration(12),

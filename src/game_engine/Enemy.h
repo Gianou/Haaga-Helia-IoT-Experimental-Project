@@ -2,7 +2,7 @@
 #define Enemy_H
 
 #include "GameObject.h"
-#include "Meteorite.h"
+#include "../sprites/Meteorite.h"
 
 class Enemy : public GameObject
 {

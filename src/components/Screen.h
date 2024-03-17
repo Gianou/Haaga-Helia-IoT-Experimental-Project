@@ -2,10 +2,10 @@
 #define Screen_H
 
 #include <TFT_eSPI.h>
-#include "GameObject.h"
-#include "InputManager.h"
-#include "ConnexionManager.h"
-#include "config.h"
+#include "../game_engine/GameObject.h"
+// #include "../game_engine/InputManager.h"
+#include "../network/ConnexionManager.h"
+// #include "config.h"
 
 class Screen : public GameObject
 {

@@ -1,11 +1,11 @@
 #ifndef GAME_OVER_UI_H
 #define GAME_OVER_UI_H
 
-#include "GameObject.h"
-#include "SceneManager.h"
-#include "InputManager.h"
-#include "ConnexionManager.h"
-#include "ScoreManager.h"
+#include "../game_engine/GameObject.h"
+#include "../game_engine/SceneManager.h"
+#include "../game_engine/InputManager.h"
+#include "../game_engine/ScoreManager.h"
+#include "../network/ConnexionManager.h"
 
 class GameOverUI : public GameObject
 {

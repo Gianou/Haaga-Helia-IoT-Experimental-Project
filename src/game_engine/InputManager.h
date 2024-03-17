@@ -1,10 +1,10 @@
 #ifndef InputManager_H
 #define InputManager_H
 
-#include "Button.h"
-#include "Joystick.h"
-#include "Sonar.h"
-#include "Gyroscope.h"
+#include "../components/Button.h"
+#include "../components/Joystick.h"
+#include "../components/Sonar.h"
+#include "../components/Gyroscope.h"
 #include "GameObject.h"
 
 class InputManager : public GameObject

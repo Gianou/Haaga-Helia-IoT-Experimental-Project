@@ -1,23 +1,26 @@
 #include <SPI.h>
 #include <TFT_eSPI.h>
-#include "Screen.h"
-#include "Button.h"
-#include "Joystick.h"
-#include "InputManager.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "GameEngine.h"
-#include "Debugger.h"
-#include "CollisionManager.h"
-#include "Scene.h"
-#include "SceneManager.h"
-#include "StartUI.h"
-#include "GameOverUI.h"
-#include "LeaderboardUI.h"
-#include "EnemyManager.h"
-#include "ConnexionManager.h"
-#include "Sonar.h"
-#include "Gyroscope.h"
+#include "src/components/Screen.h"
+#include "src/components/Button.h"
+#include "src/components/Gyroscope.h"
+#include "src/components/Joystick.h"
+#include "src/components/Sonar.h"
+
+#include "src/game_engine/InputManager.h"
+#include "src/game_engine/Player.h"
+#include "src/game_engine/Enemy.h"
+#include "src/game_engine/GameEngine.h"
+#include "src/game_engine/Debugger.h"
+#include "src/game_engine/CollisionManager.h"
+#include "src/game_engine/Scene.h"
+#include "src/game_engine/SceneManager.h"
+#include "src/game_engine/EnemyManager.h"
+
+#include "src/ui/StartUI.h"
+#include "src/ui/GameOverUI.h"
+#include "src/ui/LeaderboardUI.h"
+
+#include "src/network/ConnexionManager.h"
 
 // GYROSCOPE
 Gyroscope gyroscope = Gyroscope();

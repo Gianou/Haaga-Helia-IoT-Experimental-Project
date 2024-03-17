@@ -7,8 +7,8 @@
 #include "ScoreManager.h"
 #include <TFT_eSPI.h>
 #include "GameObject.h"
-#include "Ship.h"
-#include "Ship_hit.h"
+#include "../sprites/Ship.h"
+#include "../sprites/Ship_hit.h"
 
 class Player : public GameObject
 {
