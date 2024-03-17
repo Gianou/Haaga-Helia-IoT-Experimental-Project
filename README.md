@@ -6,11 +6,12 @@ Welcome to the ESP32 Game Project! This project allows you to run a game on an E
 
 ### Dependencies
 
-This project requires the following dependencies:
-- [Firebase_Arduino_Client_Library_for_ESP8266_and_ESP32] (https://github.com/mobizt/Firebase-ESP-Client)
-- ESP32 board support package installed in your IDE
-- Firebase ESP32 library (install via Arduino Library Manager)
-- TFT_eSPI library (install via Arduino Library Manager)
+This project requires the following librairies:
+- [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
+- [Firebase_Arduino_Client_Library_for_ESP8266_and_ESP32](https://github.com/mobizt/Firebase-ESP-Client)
+- [MPU6050 for ESP32](https://github.com/jrowberg/i2cdevlib/tree/master/ESP32_ESP-IDF/components/MPU6050)
+- [I2Cdev for ESP32](https://github.com/jrowberg/i2cdevlib/tree/master/ESP32_ESP-IDF/components/I2Cdev)
+
 
 ### Configuration
 
@@ -36,20 +37,16 @@ Note: if you are reproducing this project from scratch you will have to create a
 
 ### Components Used
 
-- ESP32 microcontroller
+- ESP32 microcontroller 
 - TFT LCD display
 - Buttons for input
-- Other necessary components (e.g., resistors, wires)
+- Joystick
+- HC-SR04 
+- GY-521 
 
 ### Wiring Instructions
 
-1. Connect the TFT LCD display to the ESP32 following the pinout specified in your display's datasheet.
-
-2. Connect the buttons to the ESP32 for user input. Ensure proper connections for each button (e.g., one pin to ground and the other to a GPIO pin).
-
-3. If using additional components, wire them according to their datasheets and project requirements.
-
-4. Double-check all connections to ensure they are secure and correct.
+This is gonna take a while
 
 ## Running the Project
 
