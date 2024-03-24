@@ -146,6 +146,7 @@ void EnemyManager::reset()
 void EnemyManager::resetForNewGame()
 {
     gamePhaseCounter = 0;
+    currentControlMode = static_cast<ShipControlMode>(0);
     reset();
 }
 

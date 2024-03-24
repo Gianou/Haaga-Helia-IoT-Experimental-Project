@@ -34,11 +34,11 @@ void GameOverUI::draw(TFT_eSprite &sprite)
 
     sprite.setTextColor(TFT_YELLOW);
     sprite.setTextSize(2);
-    sprite.drawString("GAME OVER", 10, 10);
+    sprite.drawString("GAME OVER", 30, 10);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("Final score: " + String(score), 10, 30);
+    sprite.drawString("Final score: " + String(score), 10, 40);
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
@@ -67,7 +67,9 @@ void GameOverUI::draw(TFT_eSprite &sprite)
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("Press BLUE to save", 10, 105);
+    sprite.drawString("Press      to save", 21, 105);
+    sprite.setTextColor(TFT_BLUE);
+    sprite.drawString("      BLUE ", 21, 105);
 }
 
 void GameOverUI::handleInput()

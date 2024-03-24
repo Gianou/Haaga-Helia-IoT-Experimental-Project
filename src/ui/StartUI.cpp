@@ -49,7 +49,10 @@ void StartUI::draw(TFT_eSprite &sprite)
 
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
-    sprite.drawString("Press BLUE to select", 18, 110);
+    sprite.drawString("Press      to select", 18, 110);
+    sprite.setTextColor(TFT_BLUE);
+    sprite.drawString("      BLUE ", 18, 110);
+    sprite.setTextColor(TFT_WHITE);
 }
 
 void StartUI::handleInput()

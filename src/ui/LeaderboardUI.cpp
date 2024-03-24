@@ -43,6 +43,10 @@ void LeaderboardUI::update()
                 sceneManager.setIndex(0);
             }
         }
+        if (!inputManager.getYellowButtonValue())
+        {
+            sceneManager.setIndex(0);
+        }
     }
 
     sceneManager.setIsFirstFrameOfLeaderboard(false);
@@ -69,7 +73,7 @@ void LeaderboardUI::draw(TFT_eSprite &sprite)
     {
         sprite.setTextColor(TFT_RED);
         sprite.setTextSize(1);
-        sprite.drawString("No Internet connection", 22, 30);
+        sprite.drawString("Connecting to database", 19, 30);
         return;
     }
     else
@@ -96,6 +100,10 @@ void LeaderboardUI::draw(TFT_eSprite &sprite)
 
         sprite.setTextColor(TFT_WHITE);
         sprite.setTextSize(1);
-        sprite.drawString("Press YELLOW to go back", 12, 110);
+        sprite.drawString("Long press ", 37, 100);
+        sprite.setTextColor(TFT_YELLOW);
+        sprite.drawString("           YELLOW", 37, 100);
+        sprite.setTextColor(TFT_WHITE);
+        sprite.drawString("to go back", 54, 110);
     }
 }
