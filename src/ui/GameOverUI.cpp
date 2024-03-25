@@ -68,7 +68,7 @@ void GameOverUI::draw(TFT_eSprite &sprite)
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
     sprite.drawString("Press      to save", 21, 105);
-    sprite.setTextColor(TFT_BLUE);
+    sprite.setTextColor(TFT_SKYBLUE);
     sprite.drawString("      BLUE ", 21, 105);
 }
 

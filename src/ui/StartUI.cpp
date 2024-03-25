@@ -50,7 +50,7 @@ void StartUI::draw(TFT_eSprite &sprite)
     sprite.setTextColor(TFT_WHITE);
     sprite.setTextSize(1);
     sprite.drawString("Press      to select", 18, 110);
-    sprite.setTextColor(TFT_BLUE);
+    sprite.setTextColor(TFT_SKYBLUE);
     sprite.drawString("      BLUE ", 18, 110);
     sprite.setTextColor(TFT_WHITE);
 }
@@ -58,14 +58,16 @@ void StartUI::draw(TFT_eSprite &sprite)
 void StartUI::handleInput()
 {
     InputManager &inputManager = InputManager::getInstance();
+    int upValue = 3800;
+    int downValue = 400;
     if (moveYAxis)
     {
-        if (inputManager.getJoystickYValue() > 4000)
+        if (inputManager.getJoystickYValue() > upValue)
         {
             currentCharYIndex == 0 ? currentCharYIndex = 1 : currentCharYIndex = 0;
             moveYAxis = false;
         }
-        else if (inputManager.getJoystickYValue() < 200)
+        else if (inputManager.getJoystickYValue() < downValue)
         {
             currentCharYIndex == 1 ? currentCharYIndex = 0 : currentCharYIndex = 1;
             moveYAxis = false;
@@ -73,7 +75,7 @@ void StartUI::handleInput()
     }
     else
     {
-        if (inputManager.getJoystickYValue() >= 200 && inputManager.getJoystickYValue() <= 4000)
+        if (inputManager.getJoystickYValue() >= downValue && inputManager.getJoystickYValue() <= upValue)
         {
             moveYAxis = true;
         }
