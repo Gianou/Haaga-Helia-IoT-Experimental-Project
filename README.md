@@ -1,5 +1,7 @@
 # Table of Contents
 
+<img align="right" height="360" src="images/Game_device_1.jpg" alt="Game Device" > 
+
 1. [HELLO CAPTAIN!](#hello-captain)
 2. [Software Setup](#software-setup)
    - [Dependencies](#dependencies)
