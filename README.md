@@ -143,5 +143,5 @@ In our project, we used the a 160x128 ST7735 GREENTAB display, for reference her
 Once you have completed the software and hardware setup, you can upload the project to your ESP32 board using the Arduino IDE or your preferred IDE. After uploading, the game should start running on your ESP32 device.
 
 ## License
-To be discussed
+[MIT license](./LICENSE).
 
