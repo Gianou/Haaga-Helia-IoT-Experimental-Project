@@ -24,7 +24,7 @@ The project was realised for the IoT Experimental Project course from  Haaga-Hel
 
 <div align="center">
    <h5> Demonstration Video <h5>
-    <a href="https://www.youtube.com/watch?v=9Bk4u3yt4mI">
+    <a href="https://www.youtube.com/watch?v=9Bk4u3yt4mI" target="_blank">
         <img src="https://img.youtube.com/vi/9Bk4u3yt4mI/0.jpg" alt="Presentation video of the project" width="320" >
     </a>
 </div>
