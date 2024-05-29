@@ -22,7 +22,12 @@ This project based on ESP32 is an arcade-style game and gaming devices that uses
 This README will guide you through the setup process for both the software and hardware components of the project.   
 The project was realised for the IoT Experimental Project course from  Haaga-Helia University of Applied Sciences.  
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9Bk4u3yt4mI/0.jpg)](https://www.youtube.com/watch?v=9Bk4u3yt4mI)
+<div align="center">
+   <h5> Demonstration Video <h5>
+    <a href="https://www.youtube.com/watch?v=9Bk4u3yt4mI">
+        <img src="https://img.youtube.com/vi/9Bk4u3yt4mI/0.jpg" alt="Presentation video of the project" width="320" >
+    </a>
+</div>
 
 ## Software Setup
 
