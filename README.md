@@ -16,9 +16,13 @@
 
 # HELLO CAPTAIN!
 
-This project is an ESP32 based game and gaming devices that uses unconventional controls. This README will guide you through the setup process for both the software and hardware components of the project.  
-  
-The project was realised for the IoT Experimental Project course from  Haaga-Helia University of Applied Sciences.
+This project based on ESP32 is an arcade-style game and gaming devices that uses unconventional controls. In the game, the player steers a ship to dodge approaching asteroids. What sets this game apart is its evolving control mechanisms: starting with a traditional joystick, transitioning to touchless controls using a proximity sensor, and finally shifting to orientation-based controls with a gyroscope sensor.
+
+
+This README will guide you through the setup process for both the software and hardware components of the project.   
+The project was realised for the IoT Experimental Project course from  Haaga-Helia University of Applied Sciences.  
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9Bk4u3yt4mI/0.jpg)](https://www.youtube.com/watch?v=9Bk4u3yt4mI)
 
 ## Software Setup
 
